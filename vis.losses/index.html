@@ -230,12 +230,11 @@
 <pre><code class="python">build_loss(self)
 </code></pre>
 
-<p>Implement this function to build the loss function expression.
-Any additional arguments required to build this loss function may be passed in via <code>__init__</code>.</p>
-<p>Ideally, the function expression must be compatible with all keras backends and <code>channels_first</code> or
-<code>channels_last</code> image_data_format(s). <code>utils.slicer</code> can be used to define data format agnostic slices.
-(just define it in <code>channels_first</code> format, it will automatically shuffle indices for tensorflow
-which uses <code>channels_last</code> format).</p>
+<p>損失関数式を構築するために、この関数を実装します。
+この損失関数を構築するために必要な追加の引数は<code>__init__</code>経由で渡すことができます。</p>
+<p>理想的には、この関数式は全てのKerasバックエンドと、<code>channels_first</code>や<code>channels_last</code>の画像データフォーマットと互換性を持つべきです。
+<code>utils.slicer</code>を使えば、データフォーマットを気にせずスライスを定義できます。
+（<code>channels_first</code>フォーマットでそれ定義すると、<code>channels_last</code>フォーマットを使うTensorflow用にインデックスを自動的にシャッフルします。 ）</p>
 <pre><code class="python"># theano slice
 conv_layer[:, filter_idx, ...]
 
@@ -246,9 +245,9 @@ conv_layer[..., filter_idx]
 conv_layer[utils.slicer[:, filter_idx, ...]]
 </code></pre>
 
-<p><a href="../vis.utils.utils/#get_img_shape">utils.get_img_shape</a> is another optional utility that make this easier.</p>
-<p><em>Returns:</em></p>
-<p>The loss expression.</p>
+<p><a href="../vis.utils.utils/#get_img_shape">utils.get_img_shape</a>はこれを簡単にするもう一つのオプショナルユーティリティです。</p>
+<p><em>戻り値:</em></p>
+<p>損失式</p>
 <hr />
 <h2 id="activationmaximization"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/losses.py#L48">ActivationMaximization</a></h2>
 <p>特定レイヤ内のフィルタセットの活性化を最大化する損失関数です。</p>
@@ -269,26 +268,6 @@ conv_layer[utils.slicer[:, filter_idx, ...]]
 <p>もし貴方がクラス出力を最大化するために最後の<code>keras.layers.Dense</code>レイヤを最適化する場合、'softmax'とは対照的な活性化である'linear'の方がより良い結果を得る傾向があります。これは<code>softmax</code>出力が他のクラスを最小限にすることで最大化されることができるためです。</p>
 <hr />
 <h3 id="activationmaximizationbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/losses.py#L75">ActivationMaximization.build_loss</a></h3>
-<pre><code class="python">build_loss(self)
-</code></pre>
-
-<p>Implement this function to build the loss function expression.
-Any additional arguments required to build this loss function may be passed in via <code>__init__</code>.</p>
-<p>Ideally, the function expression must be compatible with all keras backends and <code>channels_first</code> or
-<code>channels_last</code> image_data_format(s). <code>utils.slicer</code> can be used to define data format agnostic slices.
-(just define it in <code>channels_first</code> format, it will automatically shuffle indices for tensorflow
-which uses <code>channels_last</code> format).</p>
-<pre><code class="python"># theano slice
-conv_layer[:, filter_idx, ...]
-
-# TF slice
-conv_layer[..., filter_idx]
-
-# Backend agnostic slice
-conv_layer[utils.slicer[:, filter_idx, ...]]
-</code></pre>
-
-<p><a href="../vis.utils.utils/#get_img_shape">utils.get_img_shape</a> is another optional utility that make this easier.</p>
 <p><em>Returns:</em></p>
 <p>The loss expression.</p>
               

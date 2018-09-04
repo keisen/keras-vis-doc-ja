@@ -210,20 +210,20 @@
 </code></pre>
 
 <p>Creates an optimizer that minimizes weighted loss function.</p>
-<p><em>Args:</em></p>
+<p>重み付き損失関数を最小化するオプティマイザを生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>losses</strong>:  List of (<a href="vis.losses#Loss">Loss</a>, weight) tuples.</li>
-<li><strong>input_range</strong>:  Specifies the input range as a <code>(min, max)</code> tuple. This is used to rescale the
-  final optimized input to the given range. (Default value=(0, 255))</li>
-<li><strong>wrt_tensor</strong>:  Short for, with respect to. This instructs the optimizer that the aggregate loss from <code>losses</code>
-  should be minimized with respect to <code>wrt_tensor</code>.
-  <code>wrt_tensor</code> can be any tensor that is part of the model graph. Default value is set to None
-  which means that loss will simply be minimized with respect to <code>input_tensor</code>.</li>
-<li><strong>norm_grads</strong>:  True to normalize gradients. Normalization avoids very small or large gradients and ensures
-  a smooth gradient gradient descent process. If you want the actual gradient
-  (for example, visualizing attention), set this to false.</li>
+<li><strong>input_tensor</strong>:  入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>losses</strong>:  (<a href="vis.losses#Loss">Loss</a>, weight)のタプルのリスト.</li>
+<li><strong>input_range</strong>:  入力値の範囲を<code>(min, max)</code>のタプルで指定します。
+  これは最終的に最適化された入力を、指定されたの範囲にリスケーるために使用されます（デフォルト値：(0, 255)）。</li>
+<li><strong>wrt_tensor</strong>:  <code>losses</code>から集計した損失を<code>wtr_tensor</code>に関して最小化する必要があることをオプティマイザに指示します。
+  <code>wrt_tensor</code>にはモデルグラフのいずれかのテンソルを指定できます。
+  デフォルト値はNoneで、これは単に損失を<code>input_tensor</code>に関して最小化することを意味します。</li>
+<li><strong>norm_grads</strong>:  勾配を正規化する場合はTrue。
+  正規化は小さすぎるまたは大きすぎる勾配を回避し、滑らかな勾配降下プロセスを確保します。
+  実際の勾配を扱う場合は（例えば、注目領域の可視化）、Falseをセットしてください。</li>
 </ul>
 <hr />
 <h3 id="optimizerminimize"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/optimizer.py#L108">Optimizer.minimize</a></h3>
@@ -231,25 +231,23 @@
     callbacks=None, verbose=True)
 </code></pre>
 
-<p>Performs gradient descent on the input image with respect to defined losses.</p>
-<p><em>Args:</em></p>
+<p>定義された損失に関して、入力画像の勾配降下をおこなう。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>seed_input</strong>:  An N-dim numpy array of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.
-  Seeded with random noise if set to None. (Default value = None)</li>
-<li><strong>max_iter</strong>:  The maximum number of gradient descent iterations. (Default value = 200)</li>
-<li><strong>input_modifiers</strong>:  A list of <a href="vis.input_modifiers#inputmodifier">InputModifier</a> instances specifying
-  how to make <code>pre</code> and <code>post</code> changes to the optimized input during the optimization process.
-  <code>pre</code> is applied in list order while <code>post</code> is applied in reverse order. For example,
-  <code>input_modifiers = [f, g]</code> means that <code>pre_input = g(f(inp))</code> and <code>post_input = f(g(inp))</code></li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. If you don't
-  specify anything, gradients are unchanged. (Default value = None)</li>
-<li><strong>callbacks</strong>:  A list of <a href="vis.callbacks#optimizercallback">OptimizerCallback</a> instances to trigger.</li>
-<li><strong>verbose</strong>:  Logs individual losses at the end of every gradient descent iteration.
-  Very useful to estimate loss weight factor(s). (Default value = True)</li>
+<li><strong>seed_input</strong>:  N次元のnumpy array。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。
+  Noneが設定された場合、ランダムなノイズでシードされる。（デフォルト値：None）</li>
+<li><strong>max_iter</strong>:  勾配降下を繰り返す最大数。（デフォルト値：２００）</li>
+<li><strong>input_modifiers</strong>:  最適化プロセス中、最適化される入力をどのように変更するか、<code>pre</code>と<code>post</code>で指定された<a href="vis.input_modifiers#inputmodifier">InputModifier</a>インスタンスのリスト。
+  <code>pre</code>はリストの並び順に適用され、<code>post</code>は逆順に適用されます。例えば、<code>input_modifiers = [f, g]</code>は
+  <code>pre_input = g(f(inp))</code>と<code>post_input = f(g(inp))</code>を意味します。</li>
+<li><strong>grad_modifier</strong>:  使用するgradient modifierについては<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。
+ 　　何も指定しない場合、勾配は変更されません。（デフォルト値：None）</li>
+<li><strong>callbacks</strong>:  トリガーする<a href="vis.callbacks#optimizercallback">OptimizerCallback</a>インスタンスのリスト。</li>
+<li><strong>verbose</strong>:  各勾配降下反復の最後に、各損失のログを出力する。損失係数を見積もるのにとても有用です。（デフォルト値：True）</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The tuple of <code>(optimized input, grads with respect to wrt, wrt_value)</code> after gradient descent iterations.</p>
+<p><em>戻り値:</em></p>
+<p>勾配降下後の<code>(optimized input, grads with respect to wrt, wrt_value)</code>のタプル</p>
               
             </div>
           </div>
