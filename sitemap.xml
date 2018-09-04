@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/visualizations/activation_maximization/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/visualizations/saliency/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/visualizations/class_activation_maps/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.visualization/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.losses/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.regularizers/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.optimizer/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.callbacks/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.input_modifiers/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.grad_modifiers/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.backprop_modifiers/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.utils.utils/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
+     <loc>https://keisen.github.io/keras-vis-docs-ja/vis.backend/vis.backend/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>optimizer - Keras-vis Documentation</title>
+  <title>最適化 - Keras-vis Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "optimizer";
+    var mkdocs_page_name = "\u6700\u9069\u5316";
     var mkdocs_page_input_path = "vis.optimizer.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/vis.optimizer/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -56,7 +56,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Visualizations</span>
+    <span class="caption-text">可視化について</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -75,27 +75,27 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">API Docs</span>
+    <span class="caption-text">APIドキュメント</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../vis.visualization/">Visualization</a>
+    <a class="" href="../vis.visualization/">可視化</a>
                 </li>
                 <li class=" current">
                     
-    <span class="caption-text">Optimization</span>
+    <span class="caption-text">最適化関連</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.losses/">losses</a>
+    <a class="" href="../vis.losses/">損失関数</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.regularizers/">regularizers</a>
+    <a class="" href="../vis.regularizers/">正則化</a>
                 </li>
                 <li class="toctree-l3 current">
                     
-    <a class="current" href="./">optimizer</a>
+    <a class="current" href="./">最適化</a>
     <ul class="subnav">
             
     <li class="toctree-l4"><a href="#optimizer">Optimizer</a></li>
@@ -113,45 +113,39 @@
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.callbacks/">callbacks</a>
+    <a class="" href="../vis.callbacks/">コールバック</a>
                 </li>
     </ul>
                 </li>
                 <li class="">
                     
-    <span class="caption-text">Modifiers</span>
+    <span class="caption-text">修飾子</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.input_modifiers/">input_modifiers</a>
+    <a class="" href="../vis.input_modifiers/">入力修飾子</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.grad_modifiers/">grad_modifiers</a>
+    <a class="" href="../vis.grad_modifiers/">勾配修飾子</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.backprop_modifiers/">backprop_modifiers</a>
+    <a class="" href="../vis.backprop_modifiers/">誤差逆伝播修飾子</a>
                 </li>
     </ul>
                 </li>
                 <li class="">
                     
-    <span class="caption-text">Utils</span>
+    <span class="caption-text">その他</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.utils.utils/">utils</a>
+    <a class="" href="../vis.utils.utils/">ユーティリティ</a>
                 </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Backend Specific</span>
-    <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.backend/">backend</a>
+    <a class="" href="../vis.backend/">バックエンド</a>
                 </li>
     </ul>
                 </li>
@@ -180,18 +174,18 @@
     
       
         
-          <li>Optimization &raquo;</li>
+          <li>最適化関連 &raquo;</li>
         
       
         
-          <li>API Docs &raquo;</li>
+          <li>APIドキュメント &raquo;</li>
         
       
     
-    <li>optimizer</li>
+    <li>最適化</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/vis.optimizer.md"
+        <a href="https://github.com/keisen/keras-vis-docs-ja/blob/master/docs/templates/vis.optimizer.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -255,10 +249,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../vis.callbacks/" class="btn btn-neutral float-right" title="callbacks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../vis.callbacks/" class="btn btn-neutral float-right" title="コールバック">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../vis.regularizers/" class="btn btn-neutral" title="regularizers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vis.regularizers/" class="btn btn-neutral" title="正則化"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -283,7 +277,7 @@
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/keisen/keras-vis-docs-ja/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../vis.regularizers/" style="color: #fcfcfc;">&laquo; Previous</a></span>

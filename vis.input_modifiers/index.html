@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>input_modifiers - Keras-vis Documentation</title>
+  <title>入力修飾子 - Keras-vis Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "input_modifiers";
+    var mkdocs_page_name = "\u5165\u529b\u4fee\u98fe\u5b50";
     var mkdocs_page_input_path = "vis.input_modifiers.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/vis.input_modifiers/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -56,7 +56,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Visualizations</span>
+    <span class="caption-text">可視化について</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -75,41 +75,41 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">API Docs</span>
+    <span class="caption-text">APIドキュメント</span>
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../vis.visualization/">Visualization</a>
+    <a class="" href="../vis.visualization/">可視化</a>
                 </li>
                 <li class="">
                     
-    <span class="caption-text">Optimization</span>
+    <span class="caption-text">最適化関連</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.losses/">losses</a>
+    <a class="" href="../vis.losses/">損失関数</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.regularizers/">regularizers</a>
+    <a class="" href="../vis.regularizers/">正則化</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.optimizer/">optimizer</a>
+    <a class="" href="../vis.optimizer/">最適化</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.callbacks/">callbacks</a>
+    <a class="" href="../vis.callbacks/">コールバック</a>
                 </li>
     </ul>
                 </li>
                 <li class=" current">
                     
-    <span class="caption-text">Modifiers</span>
+    <span class="caption-text">修飾子</span>
     <ul class="subnav">
                 <li class="toctree-l3 current">
                     
-    <a class="current" href="./">input_modifiers</a>
+    <a class="current" href="./">入力修飾子</a>
     <ul class="subnav">
             
     <li class="toctree-l4"><a href="#inputmodifier">InputModifier</a></li>
@@ -140,31 +140,25 @@
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.grad_modifiers/">grad_modifiers</a>
+    <a class="" href="../vis.grad_modifiers/">勾配修飾子</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.backprop_modifiers/">backprop_modifiers</a>
+    <a class="" href="../vis.backprop_modifiers/">誤差逆伝播修飾子</a>
                 </li>
     </ul>
                 </li>
                 <li class="">
                     
-    <span class="caption-text">Utils</span>
+    <span class="caption-text">その他</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.utils.utils/">utils</a>
+    <a class="" href="../vis.utils.utils/">ユーティリティ</a>
                 </li>
-    </ul>
-                </li>
-                <li class="">
-                    
-    <span class="caption-text">Backend Specific</span>
-    <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.backend/">backend</a>
+    <a class="" href="../vis.backend/">バックエンド</a>
                 </li>
     </ul>
                 </li>
@@ -193,18 +187,18 @@
     
       
         
-          <li>Modifiers &raquo;</li>
+          <li>修飾子 &raquo;</li>
         
       
         
-          <li>API Docs &raquo;</li>
+          <li>APIドキュメント &raquo;</li>
         
       
     
-    <li>input_modifiers</li>
+    <li>入力修飾子</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/vis.input_modifiers.md"
+        <a href="https://github.com/keisen/keras-vis-docs-ja/blob/master/docs/templates/vis.input_modifiers.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -302,10 +296,10 @@ simply ignore the implementation. It returns the unmodified <code>inp</code> by 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../vis.grad_modifiers/" class="btn btn-neutral float-right" title="grad_modifiers">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../vis.grad_modifiers/" class="btn btn-neutral float-right" title="勾配修飾子">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../vis.callbacks/" class="btn btn-neutral" title="callbacks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vis.callbacks/" class="btn btn-neutral" title="コールバック"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -330,7 +324,7 @@ simply ignore the implementation. It returns the unmodified <code>inp</code> by 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/keisen/keras-vis-docs-ja/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../vis.callbacks/" style="color: #fcfcfc;">&laquo; Previous</a></span>
