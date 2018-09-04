@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>grad_modifiers - Keras-vis Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extras.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "grad_modifiers";
+    var mkdocs_page_input_path = "vis.grad_modifiers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras-vis Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Visualizations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../visualizations/activation_maximization/">Activation Maximization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/saliency/">Saliency Maps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/class_activation_maps/">Class Activation Maps</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">API Docs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../vis.visualization/">Visualization</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Optimization</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.losses/">losses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.regularizers/">regularizers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.optimizer/">optimizer</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.callbacks/">callbacks</a>
+                </li>
+    </ul>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Modifiers</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.input_modifiers/">input_modifiers</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">grad_modifiers</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#negate">negate</a></li>
+    
+
+    <li class="toctree-l4"><a href="#absolute">absolute</a></li>
+    
+
+    <li class="toctree-l4"><a href="#invert">invert</a></li>
+    
+
+    <li class="toctree-l4"><a href="#relu">relu</a></li>
+    
+
+    <li class="toctree-l4"><a href="#small_values">small_values</a></li>
+    
+
+    <li class="toctree-l4"><a href="#get">get</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backprop_modifiers/">backprop_modifiers</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Utils</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.utils.utils/">utils</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Backend Specific</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backend/">backend</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras-vis Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modifiers &raquo;</li>
+        
+      
+        
+          <li>API Docs &raquo;</li>
+        
+      
+    
+    <li>grad_modifiers</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/vis.grad_modifiers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><strong>Source:</strong> <a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L0">vis/grad_modifiers.py#L0</a></p>
+<hr />
+<h3 id="negate"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L8">negate</a></h3>
+<pre><code class="python">negate(grads)
+</code></pre>
+
+<p>勾配の符号を反転します。すなわち-1との積。</p>
+<p><em>引数:</em></p>
+<ul>
+<li><strong>grads</strong>:  勾配をあらわすNumpy array。</li>
+</ul>
+<p><em>戻り値:</em></p>
+<p>符号反転した勾配。</p>
+<hr />
+<h3 id="absolute"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L20">absolute</a></h3>
+<pre><code class="python">absolute(grads)
+</code></pre>
+
+<p>勾配の絶対値を計算します。</p>
+<p><em>引数:</em></p>
+<ul>
+<li><strong>grads</strong>:  勾配をあらわすNumpy array。</li>
+</ul>
+<p><em>戻り値:</em></p>
+<p>勾配の絶対値。</p>
+<hr />
+<h3 id="invert"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L32">invert</a></h3>
+<pre><code class="python">invert(grads)
+</code></pre>
+
+<p>勾配の逆数を算出します。</p>
+<p><em>引数:</em></p>
+<ul>
+<li><strong>grads</strong>: 勾配をあらわすNumpy array。</li>
+</ul>
+<p><em>戻り値:</em></p>
+<p>勾配の逆数</p>
+<hr />
+<h3 id="relu"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L44">relu</a></h3>
+<pre><code class="python">relu(grads)
+</code></pre>
+
+<p>負の勾配の値を切り捨てます。すなわちmax(0, grads)。</p>
+<p><em>引数:</em></p>
+<ul>
+<li><strong>grads</strong>: 勾配をあらわすNumpy array。</li>
+</ul>
+<p><em>戻り値:</em></p>
+<p>整流された勾配</p>
+<hr />
+<h3 id="small_values"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L57">small_values</a></h3>
+<pre><code class="python">small_values(grads)
+</code></pre>
+
+<p>小さな勾配の値ほど強調することができます。すなわちabsolute(invert(grads))。</p>
+<p><em>引数:</em></p>
+<ul>
+<li><strong>grads</strong>: 勾配をあらわすNumpy array。</li>
+</ul>
+<p><em>戻り値:</em></p>
+<p>小さな値を強調するよう変更された勾配</p>
+<hr />
+<h3 id="get"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/grad_modifiers.py#L69">get</a></h3>
+<pre><code class="python">get(identifier)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../vis.backprop_modifiers/" class="btn btn-neutral float-right" title="backprop_modifiers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../vis.input_modifiers/" class="btn btn-neutral" title="input_modifiers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../vis.input_modifiers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../vis.backprop_modifiers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

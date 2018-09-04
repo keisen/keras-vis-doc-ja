@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation for keras-vis, Neural Network Visualization Toolkit.">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - Keras-vis Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="css/extras.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Keras-vis Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Home</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#keras-visualization-toolkit">Keras Visualization Toolkit</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#quick-links">Quick links</a></li>
+        
+            <li><a class="toctree-l3" href="#getting-started">Getting Started</a></li>
+        
+            <li><a class="toctree-l3" href="#installation">Installation</a></li>
+        
+            <li><a class="toctree-l3" href="#citation">Citation</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Visualizations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="visualizations/activation_maximization/">Activation Maximization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="visualizations/saliency/">Saliency Maps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="visualizations/class_activation_maps/">Class Activation Maps</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">API Docs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="vis.visualization/">Visualization</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Optimization</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.losses/">losses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.regularizers/">regularizers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.optimizer/">optimizer</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.callbacks/">callbacks</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Modifiers</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.input_modifiers/">input_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.grad_modifiers/">grad_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.backprop_modifiers/">backprop_modifiers</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Utils</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.utils.utils/">utils</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Backend Specific</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="vis.backend/">backend</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Keras-vis Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="keras-visualization-toolkit">Keras Visualization Toolkit</h1>
+<p><a href="https://travis-ci.org/raghakot/keras-vis"><img alt="Build Status" src="https://travis-ci.org/raghakot/keras-vis.svg?branch=master" /></a>
+<a href="https://github.com/raghakot/keras-vis/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" /></a>
+<a href="https://keras-vis.herokuapp.com/"><img alt="Slack" src="https://img.shields.io/badge/slack-discussion-E01563.svg" /></a></p>
+<p>keras-visはKerasモデルの可視化とデバッグのためのハイレベルツールキットです。
+現在サポートされている可視化:</p>
+<ul>
+<li>Activation maximization</li>
+<li>Saliency maps</li>
+<li>Class activation maps</li>
+</ul>
+<p>全ての可視化はデフォルトでN次元画像入力をサポートしています。すなわち、モデルへのN次元画像入力を一般化しています。</p>
+<p>keras-visはクリーンで使いやすく、拡張可能なインタフェースを備えています。上記の可視化全てをエネルギー最小化問題として一般化しています。
+theanoとtensorflow両方のバックエンドと互換性があり、'channels_first'と'channels_last'のデータ形式を扱えます。</p>
+<h3 id="quick-links">Quick links</h3>
+<ul>
+<li><a href="https://raghakot.github.io/keras-vis">https://raghakot.github.io/keras-vis</a> のドキュメントを読んでください。</li>
+<li>質問や議論のためにSlackの <a href="https://keras-vis.herokuapp.com/">channel</a> にJoinして下さい。</li>
+<li>私たちは<a href="https://waffle.io/raghakot/keras-vis">waffle.io</a>で新しい機能やタスクを追跡しています。PRを投げて協力してもらえると嬉しいです。</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>画像の誤差逆伝搬問題では、ゴールはある損失関数を最小にする入力画像を生成することです。画像の誤差逆伝搬問題を設定するのは簡単です。</p>
+<p><strong>重み付き損失関数を定義</strong></p>
+<p>様々な有用な損失関数が<a href="https://raghakot.github.io/keras-vis/vis.losses">losses</a>で定義されます。
+カスタム損失関数は<a href="https://raghakot.github.io/keras-vis/vis.losses/#lossbuild_loss">Loss.build_loss</a>を実装することで定義できます。</p>
+<pre><code class="python">from vis.losses import ActivationMaximization
+from vis.regularizers import TotalVariation, LPNorm
+
+filter_indices = [1, 2, 3]
+
+# Tupleは(損失関数, 重み)で構成されています。
+# 必要に応じて正則化(regularizers)も追加してください。
+losses = [
+    (ActivationMaximization(keras_layer, filter_indices), 1),
+    (LPNorm(model.input), 10),
+    (TotalVariation(model.input), 10)
+]
+</code></pre>
+
+<p><strong>重み付き損失を最小化するための最適化設定</strong></p>
+<p>自然な画像を生成するために、画像探索空間は正則化ペナルティを用いて制限されます。
+いくつかの汎用的な正則化は<a href="https://raghakot.github.io/keras-vis/vis.regularizers">regularizers</a>に定義されています。
+損失関数のように、<a href="https://raghakot.github.io/keras-vis/vis.losses/#lossbuild_loss">Loss.build_loss</a>を実装することでカスタム正則化を定義できます。</p>
+<pre><code class="python">from vis.optimizer import Optimizer
+
+optimizer = Optimizer(model.input, losses)
+opt_img, grads, _ = optimizer.minimize()
+</code></pre>
+
+<p>サポートされている可視化の具体例は<a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples folder</a>にあります。</p>
+<h2 id="installation">Installation</h2>
+<p>1) theanoまたはtensorflowバックエンドと共に<a href="https://github.com/keras-team/keras/blob/master/README.md#installation">keras</a>をインストールします。
+Kerasのバージョンが2.0以上であることに注意して下さい。</p>
+<p>2) keras-visをインストールします。</p>
+<blockquote>
+<p>ソースコードからインストール</p>
+</blockquote>
+<pre><code class="bash">sudo python setup.py install
+</code></pre>
+
+<blockquote>
+<p>GitHubからインストール</p>
+</blockquote>
+<pre><code class="bash">sudo pip install git+https://github.com/raghakot/keras-vis.git
+</code></pre>
+
+<blockquote>
+<p>PyPIパッケージからインストール</p>
+</blockquote>
+<pre><code class="bash">sudo pip install keras-vis
+</code></pre>
+
+<h3 id="visualizations">Visualizations</h3>
+<p><strong>注意：現在、リンクは壊れておりドキュメント全体を修正中です。 サンプルは<code>examples/</code>配下を参照して下さい。</strong></p>
+<p>ニューラルネットはブラックボックスです。近年では、畳み込みネットワークを理解し可視化するための、いくつかのアプローチが開発されています。
+それらの論文は私達にブラックボックに耳を傾け、誤分類を診断し、ネットワークが過学習（または未学習）かどうかを評価する方法を提供します。</p>
+<p>Guided-backpropを使って成長している他のアプリケーションのリストの中で、<a href="https://deepdreamgenerator.com/gallery">trippy art</a>、<a href="https://github.com/jcjohnson/neural-style">neural style transfer</a> (texture style transfer)を作ることができます。</p>
+<p>さまざまな視覚化が、それぞれのページで文書化され、ここに要約されています。</p>
+<hr/>
+
+<h3 id="conv-filter-visualization"><a href="https://raghakot.github.io/keras-vis/visualizations/conv_filters">Conv filter visualization</a></h3>
+<p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/conv_vis/cover.jpg?raw=true"/></p>
+<p><em>畳み込みフィルタは、類似のテンプレートパターンが入力画像内に見られるとき、出力を最大化する'テンプレートマッチング'フィルタを学習します。
+アクティベーションの最大化によってこれらのテンプレートを視覚化します。</em></p>
+<hr/>
+
+<h3 id="dense-layer-visualization"><a href="https://raghakot.github.io/keras-vis/visualizations/dense">Dense layer visualization</a></h3>
+<p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/dense_vis/cover.png?raw=true"/></p>
+<p><em>私たちは、ネットワークが過学習（または未学習）か、一般化が適切かどうかをどのように評価できますか？</em></p>
+<hr/>
+
+<h3 id="attention-maps"><a href="https://raghakot.github.io/keras-vis/visualizations/attention">Attention Maps</a></h3>
+<p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/attention_vis/cover.png?raw=true"/></p>
+<p><em>私たちはネットワークがその出力を決定する際、画像の正しい部分を注視しているかどうかをどのように評価できますか？</em></p>
+<hr/>
+
+<h3 id="gif">最適化の進捗をGIFアニメで出力する</h3>
+<p><a href="https://raghakot.github.io/keras-vis/vis.callbacks">callbacks</a>を活用して最適化の進捗をGIFアニメとして生成可能です。
+次の例は、'オゼル'クラス（output_index: 20）のActivation maximizationによる可視化です。</p>
+<pre><code class="python">from vis.losses import ActivationMaximization
+from vis.regularizers import TotalVariation, LPNorm
+from vis.modifiers import Jitter
+from vis.optimizer import Optimizer
+
+from vis.callbacks import GifGenerator
+from vis.utils.vggnet import VGG16
+
+# VGG16をImageNetのWeightsで構築する
+model = VGG16(weights='imagenet', include_top=True)
+print('Model loaded.')
+
+# 可視化したいレイヤの名前（vggnet.pyのモデル定義を参照して下さい）
+layer_name = 'predictions'
+layer_dict = dict([(layer.name, layer) for layer in model.layers[1:]])
+output_class = [20]
+
+losses = [
+    (ActivationMaximization(layer_dict[layer_name], output_class), 2),
+    (LPNorm(model.input), 10),
+    (TotalVariation(model.input), 10)
+]
+opt = Optimizer(model.input, losses)
+opt.minimize(max_iter=500, verbose=True, image_modifiers=[Jitter()], callbacks=[GifGenerator('opt_progress')])
+
+</code></pre>
+
+<p>出力がどのように変化するか注目して下さい。　これは鮮明な活性化最大化画像を生成することが知られている[ImageModifier]の一種である<a href="https://raghakot.github.io/keras-vis/vis.modifiers/#jitter">Jitter</a>を使っているからです。</p>
+<p>練習として次に挑戦して下さい。</p>
+<ul>
+<li>Jitterを取り除く</li>
+<li>損失の重みを変化させる</li>
+</ul>
+<p><img alt="opt_progress" src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/opt_progress.gif?raw=true" title="Optimization progress" /></p>
+<hr/>
+
+<h2 id="citation">Citation</h2>
+<p>もしkeras-visがあなたの研究の役にたったら、あなたの出版物に引用して下さい。ここにBibTeXエントリの例を示します。</p>
+<pre><code>@misc{raghakotkerasvis,
+  title={keras-vis},
+  author={Kotikalapudi, Raghavendra and contributors},
+  year={2017},
+  publisher={GitHub},
+  howpublished={\url{https://github.com/raghakot/keras-vis}},
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="visualizations/activation_maximization/" class="btn btn-neutral float-right" title="Activation Maximization">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="visualizations/activation_maximization/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.3
+Build Date UTC : 2018-09-04 07:37:02
+-->

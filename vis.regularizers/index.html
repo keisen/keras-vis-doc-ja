@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>regularizers - Keras-vis Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extras.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "regularizers";
+    var mkdocs_page_input_path = "vis.regularizers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras-vis Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Visualizations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../visualizations/activation_maximization/">Activation Maximization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/saliency/">Saliency Maps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/class_activation_maps/">Class Activation Maps</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">API Docs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../vis.visualization/">Visualization</a>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Optimization</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.losses/">losses</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">regularizers</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#normalize">normalize</a></li>
+    
+
+    <li class="toctree-l4"><a href="#totalvariation">TotalVariation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#totalvariation__init__">TotalVariation.__init__</a></li>
+        
+            <li><a class="toctree-l5" href="#totalvariationbuild_loss">TotalVariation.build_loss</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#lpnorm">LPNorm</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#lpnorm__init__">LPNorm.__init__</a></li>
+        
+            <li><a class="toctree-l5" href="#lpnormbuild_loss">LPNorm.build_loss</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.optimizer/">optimizer</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.callbacks/">callbacks</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Modifiers</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.input_modifiers/">input_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.grad_modifiers/">grad_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backprop_modifiers/">backprop_modifiers</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Utils</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.utils.utils/">utils</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Backend Specific</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backend/">backend</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras-vis Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Optimization &raquo;</li>
+        
+      
+        
+          <li>API Docs &raquo;</li>
+        
+      
+    
+    <li>regularizers</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/vis.regularizers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><strong>Source:</strong> <a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L0">vis/regularizers.py#L0</a></p>
+<hr />
+<h3 id="normalize"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L11">normalize</a></h3>
+<pre><code class="python">normalize(input_tensor, output_tensor)
+</code></pre>
+
+<p>Normalizes the <code>output_tensor</code> with respect to <code>input_tensor</code> dimensions.
+This makes regularizer weight factor more or less uniform across various input image dimensions.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>input_tensor</strong>:  An tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
+  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
+<li><strong>output_tensor</strong>:  The tensor to normalize.</li>
+</ul>
+<p><em>Returns:</em></p>
+<p>The normalized tensor.</p>
+<hr />
+<h2 id="totalvariation"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L27">TotalVariation</a></h2>
+<p>Abstract class for defining the loss function to be minimized.
+The loss function should be built by defining <code>build_loss</code> function.</p>
+<p>The attribute <code>name</code> should be defined to identify loss function with verbose outputs.
+Defaults to 'Unnamed Loss' if not overridden.</p>
+<hr />
+<h3 id="totalvariation__init__"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L29">TotalVariation.<code>__init__</code></a></h3>
+<pre><code class="python">__init__(self, img_input, beta=2.0)
+</code></pre>
+
+<p>Total variation regularizer encourages blobbier and coherent image structures, akin to natural images.
+See <code>section 3.2.2</code> in
+<a href="https://arxiv.org/pdf/1512.02017v3.pdf">Visualizing deep convolutional neural networks using natural pre-images</a>
+for details.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>img_input</strong>:  An image tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=</code>channels_first<code>or</code>(samples, image_dims..., channels)<code>if</code>image_data_format=channels_last`.</li>
+<li><strong>beta</strong>:  Smaller values of beta give sharper but 'spikier' images.
+  Values <script type="math/tex">\in [1.5, 3.0]</script> are recommended as a reasonable compromise. (Default value = 2.)</li>
+</ul>
+<hr />
+<h3 id="totalvariationbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L46">TotalVariation.build_loss</a></h3>
+<pre><code class="python">build_loss(self)
+</code></pre>
+
+<p>Implements the N-dim version of function
+<script type="math/tex; mode=display">TV^{\beta}(x) = \sum_{whc} \left ( \left ( x(h, w+1, c) - x(h, w, c) \right )^{2} +
+\left ( x(h+1, w, c) - x(h, w, c) \right )^{2} \right )^{\frac{\beta}{2}}</script>
+to return total variation for all images in the batch.</p>
+<hr />
+<h2 id="lpnorm"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L75">LPNorm</a></h2>
+<p>Abstract class for defining the loss function to be minimized.
+The loss function should be built by defining <code>build_loss</code> function.</p>
+<p>The attribute <code>name</code> should be defined to identify loss function with verbose outputs.
+Defaults to 'Unnamed Loss' if not overridden.</p>
+<hr />
+<h3 id="lpnorm__init__"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L77">LPNorm.<code>__init__</code></a></h3>
+<pre><code class="python">__init__(self, img_input, p=6.0)
+</code></pre>
+
+<p>Builds a L-p norm function. This regularizer encourages the intensity of pixels to stay bounded.
+  i.e., prevents pixels from taking on very large values.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>img_input</strong>:  4D image input tensor to the model of shape: <code>(samples, channels, rows, cols)</code>
+  if data_format='channels_first' or <code>(samples, rows, cols, channels)</code> if data_format='channels_last'.</li>
+<li><strong>p</strong>:  The pth norm to use. If p = float('inf'), infinity-norm will be used.</li>
+</ul>
+<hr />
+<h3 id="lpnormbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L94">LPNorm.build_loss</a></h3>
+<pre><code class="python">build_loss(self)
+</code></pre>
+
+<p>Implement this function to build the loss function expression.
+Any additional arguments required to build this loss function may be passed in via <code>__init__</code>.</p>
+<p>Ideally, the function expression must be compatible with all keras backends and <code>channels_first</code> or
+<code>channels_last</code> image_data_format(s). <code>utils.slicer</code> can be used to define data format agnostic slices.
+(just define it in <code>channels_first</code> format, it will automatically shuffle indices for tensorflow
+which uses <code>channels_last</code> format).</p>
+<pre><code class="python"># theano slice
+conv_layer[:, filter_idx, ...]
+
+# TF slice
+conv_layer[..., filter_idx]
+
+# Backend agnostic slice
+conv_layer[utils.slicer[:, filter_idx, ...]]
+</code></pre>
+
+<p><a href="../vis.utils.utils/#get_img_shape">utils.get_img_shape</a> is another optional utility that make this easier.</p>
+<p><em>Returns:</em></p>
+<p>The loss expression.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../vis.optimizer/" class="btn btn-neutral float-right" title="optimizer">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../vis.losses/" class="btn btn-neutral" title="losses"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../vis.losses/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../vis.optimizer/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

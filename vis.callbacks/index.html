@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>callbacks - Keras-vis Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extras.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "callbacks";
+    var mkdocs_page_input_path = "vis.callbacks.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Keras-vis Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Visualizations</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../visualizations/activation_maximization/">Activation Maximization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/saliency/">Saliency Maps</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../visualizations/class_activation_maps/">Class Activation Maps</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">API Docs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../vis.visualization/">Visualization</a>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Optimization</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.losses/">losses</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.regularizers/">regularizers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.optimizer/">optimizer</a>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <a class="current" href="./">callbacks</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#optimizercallback">OptimizerCallback</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#optimizercallbackcallback">OptimizerCallback.callback</a></li>
+        
+            <li><a class="toctree-l5" href="#optimizercallbackon_end">OptimizerCallback.on_end</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#print">Print</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#printcallback">Print.callback</a></li>
+        
+            <li><a class="toctree-l5" href="#printon_end">Print.on_end</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l4"><a href="#gifgenerator">GifGenerator</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#gifgenerator__init__">GifGenerator.__init__</a></li>
+        
+            <li><a class="toctree-l5" href="#gifgeneratorcallback">GifGenerator.callback</a></li>
+        
+            <li><a class="toctree-l5" href="#gifgeneratoron_end">GifGenerator.on_end</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Modifiers</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.input_modifiers/">input_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.grad_modifiers/">grad_modifiers</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backprop_modifiers/">backprop_modifiers</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Utils</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.utils.utils/">utils</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Backend Specific</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../vis.backend/">backend</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Keras-vis Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Optimization &raquo;</li>
+        
+      
+        
+          <li>API Docs &raquo;</li>
+        
+      
+    
+    <li>callbacks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="http://github.com/raghakot/keras-vis/blob/master/docs/templates/vis.callbacks.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><strong>Source:</strong> <a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L0">vis/callbacks.py#L0</a></p>
+<hr />
+<h2 id="optimizercallback"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L16">OptimizerCallback</a></h2>
+<p><a href="vis.optimizer#optimizerminimize">Optimizer.minimize</a>で使用するコールバックを定義するための抽象クラスです。</p>
+<hr />
+<h3 id="optimizercallbackcallback"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L20">OptimizerCallback.callback</a></h3>
+<pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
+</code></pre>
+
+<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>i</strong>:  The optimizer iteration.</li>
+<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
+<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
+<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
+<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
+</ul>
+<hr />
+<h3 id="optimizercallbackon_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L32">OptimizerCallback.on_end</a></h3>
+<pre><code class="python">on_end(self)
+</code></pre>
+
+<p>Called at the end of optimization process. This function is typically used to cleanup / close any
+opened resources at the end of optimization.</p>
+<hr />
+<h2 id="print"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L39">Print</a></h2>
+<p>最適化中の値をプリントするためのコールバックです。</p>
+<hr />
+<h3 id="printcallback"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L42">Print.callback</a></h3>
+<pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
+</code></pre>
+
+<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>i</strong>:  The optimizer iteration.</li>
+<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
+<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
+<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
+<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
+</ul>
+<hr />
+<h3 id="printon_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L32">Print.on_end</a></h3>
+<pre><code class="python">on_end(self)
+</code></pre>
+
+<p>Called at the end of optimization process. This function is typically used to cleanup / close any
+opened resources at the end of optimization.</p>
+<hr />
+<h2 id="gifgenerator"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L47">GifGenerator</a></h2>
+<p>最適化画像のGIFを構築するためのコールバックです。</p>
+<hr />
+<h3 id="gifgenerator__init__"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L50">GifGenerator.<code>__init__</code></a></h3>
+<pre><code class="python">__init__(self, path)
+</code></pre>
+
+<p><em>引数:</em></p>
+<ul>
+<li><strong>path</strong>:  保存するGIFファイルのパス。</li>
+</ul>
+<hr />
+<h3 id="gifgeneratorcallback"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L60">GifGenerator.callback</a></h3>
+<pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
+</code></pre>
+
+<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
+<p><em>Args:</em></p>
+<ul>
+<li><strong>i</strong>:  The optimizer iteration.</li>
+<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
+<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
+<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
+<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
+</ul>
+<hr />
+<h3 id="gifgeneratoron_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L65">GifGenerator.on_end</a></h3>
+<pre><code class="python">on_end(self)
+</code></pre>
+
+<p>Called at the end of optimization process. This function is typically used to cleanup / close any
+opened resources at the end of optimization.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../vis.input_modifiers/" class="btn btn-neutral float-right" title="input_modifiers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../vis.optimizer/" class="btn btn-neutral" title="optimizer"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="http://github.com/raghakot/keras-vis/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../vis.optimizer/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../vis.input_modifiers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
