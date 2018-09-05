@@ -213,22 +213,23 @@
 
 <p>Generates the <code>input_tensor</code> that minimizes the weighted <code>losses</code>. This function is intended for advanced
 use cases where a custom loss is desired.</p>
-<p><em>Args:</em></p>
+<p>重み付き<code>losses</code>を最小にする<code>input_tensor</code>を生成します。
+この関数はカスタム損失を必要とする高度なユースケースを対象にしています。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
-  When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
-<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
-<li><strong>seed_input</strong>:  Seeds the optimization with a starting image. Initialized with a random value when set to None.
-  (Default value = None)</li>
-<li><strong>input_range</strong>:  Specifies the input range as a <code>(min, max)</code> tuple. This is used to rescale the
-  final optimized input to the given range. (Default value=(0, 255))</li>
-<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="../vis.optimizer/#optimizerminimize">params</a>. Will default to
-  reasonable values when required keys are not found.</li>
+<li><strong>input_tensor</strong>:  入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>wrt_tensor</strong>:  損失の勾配は、このテンソルに関して計算されます。
+  Noneを指定した場合、これは<code>input_tensor</code>と同じであると想定される。（デフォルト値： None）</li>
+<li><strong>losses</strong>:  (<a href="../vis.losses/#Loss">Loss</a>, weight)のタプルのリスト。</li>
+<li><strong>seed_input</strong>:  最適化の開始画像にシードします。Noneを指定した場合、ランダム値で初期化されます。（デフォルト値：None）</li>
+<li><strong>input_range</strong>:  入力値の範囲を<code>(min, max)</code>のタプルで指定します。
+  これは最終的に最適化された入力を、指定されたの範囲にスケールするために使用されます（デフォルト値：(0, 255)）。</li>
+<li><strong>optimizer_params</strong>:  <a href="../vis.optimizer/#optimizerminimize">オプティマイザの**kwargs引数</a>. 
+  オプティマイザの必須引数がない場合、適切なデフォルト値が設定されます。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The model input that minimizes the weighted <code>losses</code>.</p>
+<p><em>戻り値:</em></p>
+<p>重み付き<code>losses</code>を最小にするモデル入力</p>
 <hr />
 <h3 id="get_num_filters"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/__init__.py#L15">get_num_filters</a></h3>
 <pre><code class="python">get_num_filters(layer)

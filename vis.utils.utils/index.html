@@ -130,7 +130,7 @@
     <a class="current" href="./">ユーティリティ</a>
     <ul class="subnav">
             
-    <li class="toctree-l4"><a href="#global-variables">Global Variables</a></li>
+    <li class="toctree-l4"><a href="#_1">グローバル変数</a></li>
     
         <ul>
         
@@ -222,10 +222,14 @@
             <div class="section">
               
                 <p><strong>Source:</strong> <a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L0">vis/utils/utils.py#L0</a></p>
-<h2 id="global-variables"><strong>Global Variables</strong></h2>
+<h2 id="_1"><strong>グローバル変数</strong></h2>
 <ul>
 <li><strong>slicer</strong></li>
 </ul>
+<p>様々な<code>image_data_format</code>の画像のスライスを統一するためのユーティリティ。
+例：
+    conv_layer[utils.slicer[:, filter_idx, :, :]]は<code>channels_first</code>と<code>channels_last</code>の両方で機能しますが、
+    Tensorflowについては、conv_layer[utils.slicer[:, :, :, filter_idx]]でなければならない。</p>
 <hr />
 <h3 id="reverse_enumerate"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L44">reverse_enumerate</a></h3>
 <pre><code class="python">reverse_enumerate(iterable)

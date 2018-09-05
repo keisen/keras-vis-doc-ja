@@ -210,7 +210,7 @@
   <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
 <li><strong>losses</strong>:  (<a href="../vis.losses/#Loss">Loss</a>, weight)のタプルのリスト.</li>
 <li><strong>input_range</strong>:  入力値の範囲を<code>(min, max)</code>のタプルで指定します。
-  これは最終的に最適化された入力を、指定されたの範囲にリスケーるために使用されます（デフォルト値：(0, 255)）。</li>
+  これは最終的に最適化された入力を、指定されたの範囲にスケールするために使用されます（デフォルト値：(0, 255)）。</li>
 <li><strong>wrt_tensor</strong>:  <code>losses</code>から集計した損失を<code>wtr_tensor</code>に関して最小化する必要があることをオプティマイザに指示します。
   <code>wrt_tensor</code>にはモデルグラフのいずれかのテンソルを指定できます。
   デフォルト値はNoneで、これは単に損失を<code>input_tensor</code>に関して最小化することを意味します。</li>

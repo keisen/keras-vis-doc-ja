@@ -215,89 +215,63 @@
 <pre><code class="python">normalize(input_tensor, output_tensor)
 </code></pre>
 
-<p>Normalizes the <code>output_tensor</code> with respect to <code>input_tensor</code> dimensions.
-This makes regularizer weight factor more or less uniform across various input image dimensions.</p>
-<p><em>Args:</em></p>
+<p><code>input_tensor</code>の次元に対して<code>output_tensor</code>を正規化します。
+これは様々な入力画像の次元にわたって多かれ少なかれ均一な正則化重みを生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_tensor</strong>:  An tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>output_tensor</strong>:  The tensor to normalize.</li>
+<li><strong>input_tensor</strong>:  テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>output_tensor</strong>:  正規化するテンソル</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The normalized tensor.</p>
+<p><em>戻り値:</em></p>
+<p>正規化されたテンソル</p>
 <hr />
 <h2 id="totalvariation"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L27">TotalVariation</a></h2>
-<p>Abstract class for defining the loss function to be minimized.
-The loss function should be built by defining <code>build_loss</code> function.</p>
-<p>The attribute <code>name</code> should be defined to identify loss function with verbose outputs.
-Defaults to 'Unnamed Loss' if not overridden.</p>
 <hr />
 <h3 id="totalvariation__init__"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L29">TotalVariation.<code>__init__</code></a></h3>
 <pre><code class="python">__init__(self, img_input, beta=2.0)
 </code></pre>
 
-<p>Total variation regularizer encourages blobbier and coherent image structures, akin to natural images.
-See <code>section 3.2.2</code> in
-<a href="https://arxiv.org/pdf/1512.02017v3.pdf">Visualizing deep convolutional neural networks using natural pre-images</a>
-for details.</p>
-<p><em>Args:</em></p>
+<p>TV正則化は自然画像に似た、より大胆で一貫した画像構造を促進します。
+詳細は<a href="https://arxiv.org/pdf/1512.02017v3.pdf">Visualizing deep convolutional neural networks using natural pre-images</a>の<code>section 3.2.2</code>を参照してください。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>img_input</strong>:  An image tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=</code>channels_first<code>or</code>(samples, image_dims..., channels)<code>if</code>image_data_format=channels_last`.</li>
-<li><strong>beta</strong>:  Smaller values of beta give sharper but 'spikier' images.
-  Values <script type="math/tex">\in [1.5, 3.0]</script> are recommended as a reasonable compromise. (Default value = 2.)</li>
+<li><strong>img_input</strong>:  画像テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>beta</strong>:  小さい値ほどシャープであるが、より尖った画像が得られます。
+   Values <script type="math/tex">\in [1.5, 3.0]</script> は合理的で妥当な値として推奨されます。（デフォルト値：2.0）</li>
 </ul>
 <hr />
 <h3 id="totalvariationbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L46">TotalVariation.build_loss</a></h3>
 <pre><code class="python">build_loss(self)
 </code></pre>
 
-<p>Implements the N-dim version of function
+<p>バッチ内の全ての画像についてTVを得るために、下記の関数のN次元バージョンを実装します。
 <script type="math/tex; mode=display">TV^{\beta}(x) = \sum_{whc} \left ( \left ( x(h, w+1, c) - x(h, w, c) \right )^{2} +
 \left ( x(h+1, w, c) - x(h, w, c) \right )^{2} \right )^{\frac{\beta}{2}}</script>
-to return total variation for all images in the batch.</p>
+</p>
 <hr />
 <h2 id="lpnorm"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L75">LPNorm</a></h2>
-<p>Abstract class for defining the loss function to be minimized.
-The loss function should be built by defining <code>build_loss</code> function.</p>
-<p>The attribute <code>name</code> should be defined to identify loss function with verbose outputs.
-Defaults to 'Unnamed Loss' if not overridden.</p>
 <hr />
 <h3 id="lpnorm__init__"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L77">LPNorm.<code>__init__</code></a></h3>
 <pre><code class="python">__init__(self, img_input, p=6.0)
 </code></pre>
 
-<p>Builds a L-p norm function. This regularizer encourages the intensity of pixels to stay bounded.
-  i.e., prevents pixels from taking on very large values.</p>
-<p><em>Args:</em></p>
+<p>Lpノルム関数を構築します。この正則化はピクセルの輝度の制限を促進します。
+つまりピクセルがあまりに大きな値にならないようにします。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>img_input</strong>:  4D image input tensor to the model of shape: <code>(samples, channels, rows, cols)</code>
-  if data_format='channels_first' or <code>(samples, rows, cols, channels)</code> if data_format='channels_last'.</li>
-<li><strong>p</strong>:  The pth norm to use. If p = float('inf'), infinity-norm will be used.</li>
+<li><strong>img_input</strong>:  モデルへの４次元の画像入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, rows, cols)</code>、
+  <code>channels_last</code>の場合は<code>(samples, rows, cols, channels)</code>。</li>
+<li><strong>p</strong>:  p番目のノルムを指定</li>
 </ul>
 <hr />
 <h3 id="lpnormbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/regularizers.py#L94">LPNorm.build_loss</a></h3>
 <pre><code class="python">build_loss(self)
 </code></pre>
 
-<p>Implement this function to build the loss function expression.
-Any additional arguments required to build this loss function may be passed in via <code>__init__</code>.</p>
-<p>Ideally, the function expression must be compatible with all keras backends and <code>channels_first</code> or
-<code>channels_last</code> image_data_format(s). <code>utils.slicer</code> can be used to define data format agnostic slices.
-(just define it in <code>channels_first</code> format, it will automatically shuffle indices for tensorflow
-which uses <code>channels_last</code> format).</p>
-<pre><code class="python"># theano slice
-conv_layer[:, filter_idx, ...]
-
-# TF slice
-conv_layer[..., filter_idx]
-
-# Backend agnostic slice
-conv_layer[utils.slicer[:, filter_idx, ...]]
-</code></pre>
-
-<p><a href="../vis.utils.utils/#get_img_shape">utils.get_img_shape</a> is another optional utility that make this easier.</p>
-<p><em>Returns:</em></p>
-<p>The loss expression.</p>
+<p><em>戻り値:</em></p>
+<p>損失式</p>
               
             </div>
           </div>
