@@ -79,7 +79,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../vis.visualization/">可視化</a>
+    <a class="" href="../vis.visualization/">可視化関連</a>
                 </li>
                 <li class=" current">
                     
@@ -228,7 +228,7 @@
 この損失関数を構築するために必要な追加の引数は<code>__init__</code>経由で渡すことができます。</p>
 <p>理想的には、この関数式は全てのKerasバックエンドと、<code>channels_first</code>や<code>channels_last</code>の画像データフォーマットと互換性を持つべきです。
 <code>utils.slicer</code>を使えば、データフォーマットを気にせずスライスを定義できます。
-（<code>channels_first</code>フォーマットでそれ定義すると、<code>channels_last</code>フォーマットを使うTensorflow用にインデックスを自動的にシャッフルします。 ）</p>
+（<code>channels_first</code>フォーマットで定義すると、<code>channels_last</code>フォーマットを使うTensorflow用にインデックスを自動的にシャッフルします。 ）</p>
 <pre><code class="python"># theano slice
 conv_layer[:, filter_idx, ...]
 
@@ -263,7 +263,7 @@ conv_layer[utils.slicer[:, filter_idx, ...]]
 <hr />
 <h3 id="activationmaximizationbuild_loss"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/losses.py#L75">ActivationMaximization.build_loss</a></h3>
 <p><em>Returns:</em></p>
-<p>The loss expression.</p>
+<p>損失式</p>
               
             </div>
           </div>
@@ -274,7 +274,7 @@ conv_layer[utils.slicer[:, filter_idx, ...]]
         <a href="../vis.regularizers/" class="btn btn-neutral float-right" title="正則化">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../vis.visualization/" class="btn btn-neutral" title="可視化"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vis.visualization/" class="btn btn-neutral" title="可視化関連"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
