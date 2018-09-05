@@ -20,7 +20,7 @@
     // Current page data
     var mkdocs_page_name = "\u6700\u9069\u5316";
     var mkdocs_page_input_path = "vis.optimizer.md";
-    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/vis.optimizer/";
+    var mkdocs_page_url = "/keras-vis-docs-ja/vis.optimizer/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -209,7 +209,7 @@
 <ul>
 <li><strong>input_tensor</strong>:  入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
   <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
-<li><strong>losses</strong>:  (<a href="vis.losses#Loss">Loss</a>, weight)のタプルのリスト.</li>
+<li><strong>losses</strong>:  (<a href="../vis.losses/#Loss">Loss</a>, weight)のタプルのリスト.</li>
 <li><strong>input_range</strong>:  入力値の範囲を<code>(min, max)</code>のタプルで指定します。
   これは最終的に最適化された入力を、指定されたの範囲にリスケーるために使用されます（デフォルト値：(0, 255)）。</li>
 <li><strong>wrt_tensor</strong>:  <code>losses</code>から集計した損失を<code>wtr_tensor</code>に関して最小化する必要があることをオプティマイザに指示します。
@@ -232,12 +232,12 @@
   <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。
   Noneが設定された場合、ランダムなノイズでシードされる。（デフォルト値：None）</li>
 <li><strong>max_iter</strong>:  勾配降下を繰り返す最大数。（デフォルト値：２００）</li>
-<li><strong>input_modifiers</strong>:  最適化プロセス中、最適化される入力をどのように変更するか、<code>pre</code>と<code>post</code>で指定された<a href="vis.input_modifiers#inputmodifier">InputModifier</a>インスタンスのリスト。
+<li><strong>input_modifiers</strong>:  最適化プロセス中、最適化される入力をどのように変更するか、<code>pre</code>と<code>post</code>で指定された<a href="../vis.input_modifiers/#inputmodifier">InputModifier</a>インスタンスのリスト。
   <code>pre</code>はリストの並び順に適用され、<code>post</code>は逆順に適用されます。例えば、<code>input_modifiers = [f, g]</code>は
   <code>pre_input = g(f(inp))</code>と<code>post_input = f(g(inp))</code>を意味します。</li>
 <li><strong>grad_modifier</strong>:  使用するgradient modifierについては<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。
  　　何も指定しない場合、勾配は変更されません。（デフォルト値：None）</li>
-<li><strong>callbacks</strong>:  トリガーする<a href="vis.callbacks#optimizercallback">OptimizerCallback</a>インスタンスのリスト。</li>
+<li><strong>callbacks</strong>:  トリガーする<a href="../vis.callbacks/#optimizercallback">OptimizerCallback</a>インスタンスのリスト。</li>
 <li><strong>verbose</strong>:  各勾配降下反復の最後に、各損失のログを出力する。損失係数を見積もるのにとても有用です。（デフォルト値：True）</li>
 </ul>
 <p><em>戻り値:</em></p>

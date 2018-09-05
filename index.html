@@ -20,7 +20,7 @@
     // Current page data
     var mkdocs_page_name = "Home";
     var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/";
+    var mkdocs_page_url = "/keras-vis-docs-ja/";
   </script>
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
@@ -54,15 +54,13 @@
     <a class="current" href=".">Home</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#keras-visualization-toolkit">Keras Visualization Toolkit</a></li>
+    <li class="toctree-l2"><a href="#keras-vis-keras-visualization-toolkit">keras-vis: Keras Visualization Toolkit</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#quick-links">Quick links</a></li>
+            <li><a class="toctree-l3" href="#_1">クイックリンク</a></li>
         
             <li><a class="toctree-l3" href="#getting-started">Getting Started</a></li>
-        
-            <li><a class="toctree-l3" href="#installation">Installation</a></li>
         
             <li><a class="toctree-l3" href="#citation">Citation</a></li>
         
@@ -191,7 +189,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="keras-visualization-toolkit">Keras Visualization Toolkit</h1>
+                <h1 id="keras-vis-keras-visualization-toolkit">keras-vis: Keras Visualization Toolkit</h1>
 <p><a href="https://travis-ci.org/raghakot/keras-vis"><img alt="Build Status" src="https://travis-ci.org/raghakot/keras-vis.svg?branch=master" /></a>
 <a href="https://github.com/raghakot/keras-vis/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" /></a>
 <a href="https://keras-vis.herokuapp.com/"><img alt="Slack" src="https://img.shields.io/badge/slack-discussion-E01563.svg" /></a></p>
@@ -203,25 +201,25 @@
 <li>Class activation maps</li>
 </ul>
 <p>全ての可視化はデフォルトでN次元画像入力をサポートしています。すなわち、モデルへのN次元画像入力を一般化しています。</p>
-<p>keras-visはクリーンで使いやすく、拡張可能なインタフェースを備えています。上記の可視化全てをエネルギー最小化問題として一般化しています。
-theanoとtensorflow両方のバックエンドと互換性があり、'channels_first'と'channels_last'のデータ形式を扱えます。</p>
-<h3 id="quick-links">Quick links</h3>
+<p>keras-visは簡潔で使いやすく、拡張可能なインタフェースを備えています。上記の可視化全てをエネルギー最小化問題として一般化しています。
+theanoとtensorflow両方のバックエンドと互換性があり、'channels_first'と'channels_last'両方のデータ形式を扱えます。</p>
+<h3 id="_1">クイックリンク</h3>
 <ul>
-<li><a href="https://raghakot.github.io/keras-vis">https://raghakot.github.io/keras-vis</a> のドキュメントを読んでください。</li>
-<li>質問や議論のためにSlackの <a href="https://keras-vis.herokuapp.com/">channel</a> にJoinして下さい。</li>
-<li>私たちは<a href="https://waffle.io/raghakot/keras-vis">waffle.io</a>で新しい機能やタスクを追跡しています。PRを投げて協力してもらえると嬉しいです。</li>
+<li><a href="https://keisen.github.io/keras-vis-docs-ja">https://keisen.github.io/keras-vis-docs-ja</a> のドキュメントを読んでください。</li>
+<li>質問や議論のためにSlackの <a href="https://keras-vis.herokuapp.com/">チャンネル</a> に参加して下さい。</li>
+<li>私たちは<a href="https://waffle.io/raghakot/keras-vis">waffle.io</a>で新しい機能やタスクを追跡しています。PullRequestで協力してもらえると嬉しいです。</li>
 </ul>
 <h2 id="getting-started">Getting Started</h2>
-<p>画像の誤差逆伝搬問題では、ゴールはある損失関数を最小にする入力画像を生成することです。画像の誤差逆伝搬問題を設定するのは簡単です。</p>
+<p>画像の誤差逆伝搬問題は、損失関数を最小にする入力画像を生成することがゴールです。画像の誤差逆伝搬問題の設定は簡単です。</p>
 <p><strong>重み付き損失関数を定義</strong></p>
-<p>様々な有用な損失関数が<a href="https://raghakot.github.io/keras-vis/vis.losses">losses</a>で定義されます。
-カスタム損失関数は<a href="https://raghakot.github.io/keras-vis/vis.losses/#lossbuild_loss">Loss.build_loss</a>を実装することで定義できます。</p>
+<p>様々な有用な損失関数が<a href="vis.losses/">losses</a>で定義されます。
+カスタム損失関数は<a href="vis.losses.md/#lossbuild_loss">Loss.build_loss</a>を実装することで定義できます。</p>
 <pre><code class="python">from vis.losses import ActivationMaximization
 from vis.regularizers import TotalVariation, LPNorm
 
 filter_indices = [1, 2, 3]
 
-# Tupleは(損失関数, 重み)で構成されています。
+# タプルは(損失関数, 重み係数)で構成されています。
 # 必要に応じて正則化(regularizers)も追加してください。
 losses = [
     (ActivationMaximization(keras_layer, filter_indices), 1),
@@ -232,8 +230,8 @@ losses = [
 
 <p><strong>重み付き損失を最小化するための最適化設定</strong></p>
 <p>自然な画像を生成するために、画像探索空間は正則化ペナルティを用いて制限されます。
-いくつかの汎用的な正則化は<a href="https://raghakot.github.io/keras-vis/vis.regularizers">regularizers</a>に定義されています。
-損失関数のように、<a href="https://raghakot.github.io/keras-vis/vis.losses/#lossbuild_loss">Loss.build_loss</a>を実装することでカスタム正則化を定義できます。</p>
+いくつかの汎用的な正則化は<a href="vis.regularizers/">regularizers</a>に定義されています。
+損失関数のように、<a href="vis.losses.md/#lossbuild_loss">Loss.build_loss</a>を実装することでカスタム正則化を定義できます。</p>
 <pre><code class="python">from vis.optimizer import Optimizer
 
 optimizer = Optimizer(model.input, losses)
@@ -241,7 +239,11 @@ opt_img, grads, _ = optimizer.minimize()
 </code></pre>
 
 <p>サポートされている可視化の具体例は<a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples folder</a>にあります。</p>
-<h2 id="installation">Installation</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>現在PyPIに登録されているkeras-visは古いバージョンで、多くの不具合を含みます。
+   ソースコードまたはGitHub経由でインストールすることをお勧めします。</p>
 <p>1) theanoまたはtensorflowバックエンドと共に<a href="https://github.com/keras-team/keras/blob/master/README.md#installation">keras</a>をインストールします。
 Kerasのバージョンが2.0以上であることに注意して下さい。</p>
 <p>2) keras-visをインストールします。</p>
@@ -263,32 +265,34 @@ Kerasのバージョンが2.0以上であることに注意して下さい。</p
 <pre><code class="bash">sudo pip install keras-vis
 </code></pre>
 
-<h3 id="visualizations">Visualizations</h3>
-<p><strong>注意：現在、リンクは壊れておりドキュメント全体を修正中です。 サンプルは<code>examples/</code>配下を参照して下さい。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>現在、リンクは壊れておりドキュメント全体を修正中です。 サンプルは<code>examples/</code>配下を参照して下さい。</p>
 <p>ニューラルネットはブラックボックスです。近年では、畳み込みネットワークを理解し可視化するための、いくつかのアプローチが開発されています。
 それらの論文は私達にブラックボックに耳を傾け、誤分類を診断し、ネットワークが過学習（または未学習）かどうかを評価する方法を提供します。</p>
 <p>Guided-backpropを使って成長している他のアプリケーションのリストの中で、<a href="https://deepdreamgenerator.com/gallery">trippy art</a>、<a href="https://github.com/jcjohnson/neural-style">neural style transfer</a> (texture style transfer)を作ることができます。</p>
 <p>さまざまな視覚化が、それぞれのページで文書化され、ここに要約されています。</p>
 <hr/>
 
-<h3 id="conv-filter-visualization"><a href="https://raghakot.github.io/keras-vis/visualizations/conv_filters">Conv filter visualization</a></h3>
+<h3 id="conv-filter-visualization"><a href="visualizations/conv_filters">Conv filter visualization</a></h3>
 <p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/conv_vis/cover.jpg?raw=true"/></p>
 <p><em>畳み込みフィルタは、類似のテンプレートパターンが入力画像内に見られるとき、出力を最大化する'テンプレートマッチング'フィルタを学習します。
 アクティベーションの最大化によってこれらのテンプレートを視覚化します。</em></p>
 <hr/>
 
-<h3 id="dense-layer-visualization"><a href="https://raghakot.github.io/keras-vis/visualizations/dense">Dense layer visualization</a></h3>
+<h3 id="dense-layer-visualization"><a href="visualizations/dense">Dense layer visualization</a></h3>
 <p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/dense_vis/cover.png?raw=true"/></p>
 <p><em>私たちは、ネットワークが過学習（または未学習）か、一般化が適切かどうかをどのように評価できますか？</em></p>
 <hr/>
 
-<h3 id="attention-maps"><a href="https://raghakot.github.io/keras-vis/visualizations/attention">Attention Maps</a></h3>
+<h3 id="attention-maps"><a href="visualizations/attention">Attention Maps</a></h3>
 <p><img src="https://raw.githubusercontent.com/raghakot/keras-vis/master/images/attention_vis/cover.png?raw=true"/></p>
 <p><em>私たちはネットワークがその出力を決定する際、画像の正しい部分を注視しているかどうかをどのように評価できますか？</em></p>
 <hr/>
 
 <h3 id="gif">最適化の進捗をGIFアニメで出力する</h3>
-<p><a href="https://raghakot.github.io/keras-vis/vis.callbacks">callbacks</a>を活用して最適化の進捗をGIFアニメとして生成可能です。
+<p><a href="vis.callbacks/">callbacks</a>を活用して最適化の進捗をGIFアニメとして生成可能です。
 次の例は、'オゼル'クラス（output_index: 20）のActivation maximizationによる可視化です。</p>
 <pre><code class="python">from vis.losses import ActivationMaximization
 from vis.regularizers import TotalVariation, LPNorm
@@ -317,7 +321,7 @@ opt.minimize(max_iter=500, verbose=True, image_modifiers=[Jitter()], callbacks=[
 
 </code></pre>
 
-<p>出力がどのように変化するか注目して下さい。　これは鮮明な活性化最大化画像を生成することが知られている[ImageModifier]の一種である<a href="https://raghakot.github.io/keras-vis/vis.modifiers/#jitter">Jitter</a>を使っているからです。</p>
+<p>出力がどのように変化するか注目して下さい。　これは鮮明な活性化最大化画像を生成することが知られている[ImageModifier]の一種である<a href="vis.modifiers.md/#jitter">Jitter</a>を使っているからです。</p>
 <p>練習として次に挑戦して下さい。</p>
 <ul>
 <li>Jitterを取り除く</li>
@@ -387,5 +391,5 @@ opt.minimize(max_iter=500, verbose=True, image_modifiers=[Jitter()], callbacks=[
 
 <!--
 MkDocs version : 1.0.3
-Build Date UTC : 2018-09-04 15:04:53
+Build Date UTC : 2018-09-05 05:46:29
 -->

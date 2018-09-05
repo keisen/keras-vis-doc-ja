@@ -20,7 +20,7 @@
     // Current page data
     var mkdocs_page_name = "\u53ef\u8996\u5316";
     var mkdocs_page_input_path = "vis.visualization.md";
-    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/vis.visualization/";
+    var mkdocs_page_url = "/keras-vis-docs-ja/vis.visualization/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -219,12 +219,12 @@ use cases where a custom loss is desired.</p>
   channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
 <li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
   When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
-<li><strong>losses</strong>:  List of (<a href="vis.losses#Loss">Loss</a>, weight) tuples.</li>
+<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
 <li><strong>seed_input</strong>:  Seeds the optimization with a starting image. Initialized with a random value when set to None.
   (Default value = None)</li>
 <li><strong>input_range</strong>:  Specifies the input range as a <code>(min, max)</code> tuple. This is used to rescale the
   final optimized input to the given range. (Default value=(0, 255))</li>
-<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="vis.optimizer#optimizerminimize">params</a>. Will default to
+<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="../vis.optimizer/#optimizerminimize">params</a>. Will default to
   reasonable values when required keys are not found.</li>
 </ul>
 <p><em>Returns:</em></p>
@@ -274,7 +274,7 @@ refer to <code>visualize_class_saliency</code> or <code>visualize_regression_sal
 <ul>
 <li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
   channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>losses</strong>:  List of (<a href="vis.losses#Loss">Loss</a>, weight) tuples.</li>
+<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
 <li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
 <li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
   When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
@@ -302,7 +302,7 @@ refer to <code>visualize_class_saliency</code> or <code>visualize_regression_sal
   If None, all filters are visualized. (Default value = None)
   For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
   If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="vis.utils.utils#apply_modifications">utils.apply_modifications</a> for better results.</li>
+  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
 <li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
   When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
 <li><strong>seed_input</strong>:  Seeds the optimization with a starting input. Initialized with a random value when set to None.
@@ -316,7 +316,7 @@ refer to <code>visualize_class_saliency</code> or <code>visualize_regression_sal
 <li><strong>act_max_weight</strong>:  The weight param for <code>ActivationMaximization</code> loss. Not used if 0 or None. (Default value = 1)</li>
 <li><strong>lp_norm_weight</strong>:  The weight param for <code>LPNorm</code> regularization loss. Not used if 0 or None. (Default value = 10)</li>
 <li><strong>tv_weight</strong>:  The weight param for <code>TotalVariation</code> regularization loss. Not used if 0 or None. (Default value = 10)</li>
-<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="vis.optimizer#optimizerminimize">params</a>. Will default to
+<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="../vis.optimizer/#optimizerminimize">params</a>. Will default to
   reasonable values when required keys are not found.</li>
 </ul>
 <p><em>Example:</em></p>
@@ -343,7 +343,7 @@ output in the given <code>layer_idx</code>.</p>
   If None, all filters are visualized. (Default value = None)
   For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
   If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="vis.utils.utils#apply_modifications">utils.apply_modifications</a> for better results.</li>
+  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
 <li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
 <li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
   When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
@@ -379,7 +379,7 @@ cat regions and not the 'dog' region and vice-versa.</p>
 <ul>
 <li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
   channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>losses</strong>:  List of (<a href="vis.losses#Loss">Loss</a>, weight) tuples.</li>
+<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
 <li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
 <li><strong>penultimate_layer</strong>:  The pre-layer to <code>layer_idx</code> whose feature maps should be used to compute gradients
   with respect to filter output.</li>
@@ -406,7 +406,7 @@ cat regions and not the 'dog' region and vice-versa.</p>
   If None, all filters are visualized. (Default value = None)
   For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
   If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="vis.utils.utils#apply_modifications">utils.apply_modifications</a> for better results.</li>
+  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
 <li><strong>seed_input</strong>:  The input image for which activation map needs to be visualized.</li>
 <li><strong>penultimate_layer_idx</strong>:  The pre-layer to <code>layer_idx</code> whose feature maps should be used to compute gradients
   wrt filter output. If not provided, it is set to the nearest penultimate <code>Conv</code> or <code>Pooling</code> layer.</li>

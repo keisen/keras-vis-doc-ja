@@ -20,7 +20,7 @@
     // Current page data
     var mkdocs_page_name = "Saliency Maps";
     var mkdocs_page_input_path = "visualizations/saliency.md";
-    var mkdocs_page_url = "/keras-vis-docs-ja/vis.backend/visualizations/saliency/";
+    var mkdocs_page_url = "/keras-vis-docs-ja/visualizations/saliency/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -213,9 +213,9 @@ regions that most contribute towards the output.</p>
 <h2 id="usage">Usage</h2>
 <p>There are two APIs exposed to visualize saliency.</p>
 <ol>
-<li><a href="../vis.visualization#visualize_saliency">visualize_saliency</a>: This is the general purpose API for visualizing
+<li><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: This is the general purpose API for visualizing
 saliency.</li>
-<li><a href="../vis.visualization#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: This is intended for 
+<li><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: This is intended for 
 research use-cases where some custom weighted loss can be used.</li>
 </ol>
 <p>See <a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples/</a> for code examples.</p>
@@ -251,7 +251,7 @@ gradients (which indicate the decrease) as positive and therefore visualize decr
 <li>
 <p>To visualize what contributed to the predicted output, we want to consider gradients that have very low positive
 or negative values. This can be achieved by performing <code>grads = abs(1 / grads)</code> to magnifies small gradients. Equivalently, 
-you can use <code>grad_modifier='small_values'</code>, which does the same thing. <a href="../vis.grad_modifiers">gradient_modifiers</a> 
+you can use <code>grad_modifier='small_values'</code>, which does the same thing. <a href="../../vis.grad_modifiers/">gradient_modifiers</a> 
 are very powerful and show up in other visualization APIs as well.</p>
 </li>
 </ul>
@@ -264,7 +264,7 @@ in the paper: <a href="https://arxiv.org/pdf/1311.2901.pdf">Visualizing and Unde
 <p>In guided saliency, the backprop step is modified to only propagate positive gradients for positive activations.
 For details see the paper: <a href="https://arxiv.org/pdf/1412.6806.pdf">String For Simplicity: The All Convolutional Net</a>.</p>
 <p>For both these cases, we can use <code>backprop_modifier='relu'</code> and <code>backprop_modifier='guided'</code> respectively. You 
-can also implement your own <a href="../vis.backprop_modifiers">backprop_modifier</a> to try your crazy research idea :)</p>
+can also implement your own <a href="../../vis.backprop_modifiers/">backprop_modifier</a> to try your crazy research idea :)</p>
 <h4 id="conv-filter-saliency">Conv filter saliency</h4>
 <p>By pointing <code>layer_idx</code> to <code>Conv</code> layer, you can visualize parts of the image that influence the filter. This might 
 help you discover what a filter cares about. Here, <code>filter_indices</code> refers to the index of the <code>Conv</code> filter within 
