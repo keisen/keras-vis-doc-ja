@@ -67,10 +67,10 @@
     <a class="current" href="./">Saliency Maps</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#what-is-saliency">What is Saliency?</a></li>
+    <li class="toctree-l3"><a href="#saliency">Saliencyとは</a></li>
     
 
-    <li class="toctree-l3"><a href="#usage">Usage</a></li>
+    <li class="toctree-l3"><a href="#_1">使い方</a></li>
     
         <ul>
         
@@ -192,25 +192,26 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="what-is-saliency">What is Saliency?</h2>
+                <h2 id="saliency">Saliencyとは</h2>
 <p>Suppose that all the training images of <em>bird</em> class contains a tree with leaves. How do we know whether the CNN is 
-using bird-related pixels, as opposed to some other features such as the tree or leaves in the image? This actually 
-happens more often than you think and you should be especially suspicious if you have a small training set. </p>
+using bird-related pixels, as opposed to some other features such as the tree or leaves in the image? This actually happens more often than you think and you should be especially suspicious if you have a small training set. </p>
+<p><em>鳥クラス</em>の学習用画像の全てに樹が含まれていたと仮定します。CNNが画像内の鳥に関連するピクセルを使っているかどうか、それとは対照的に樹や葉のようなその他の特徴を使っているか、どうやって知ることができますか？これは実際あなたが考える以上によく起こり、小さな学習セットの場合、特に疑わなければなりません。</p>
 <p>Saliency maps was first introduced in the paper: 
 <a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a></p>
-<p>The idea is pretty simple. We compute the gradient of output category with respect to input image. This should tell us
-how output category value changes with respect to a small change in input image pixels. All the positive values
-in the gradients tell us that a small change to that pixel will increase the output value. 
-Hence, visualizing these gradients, which are the same shape as the image should provide some intuition of attention.</p>
+<p>Saliencyマップは論文で最初に導入されました：<a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a></p>
 <p>The idea behind saliency is pretty simple in hindsight. We compute the gradient of output category with respect to 
 input image. </p>
+<p>Saliencyの背景にあるアイデアは、後になって考えればかなりシンプルです。入力画像に関する出力カテゴリの勾配を計算します。</p>
 <p>
 <script type="math/tex; mode=display">\frac{\partial output}{\partial input}</script>
 </p>
 <p>This should tell us how the output value changes with respect to a small change in inputs. We can use these gradients 
 to highlight input regions that cause the most change in the output. Intuitively this should highlight salient image 
 regions that most contribute towards the output.</p>
-<h2 id="usage">Usage</h2>
+<p>これは入力への小さな変化に関する出力の変化を教えてくれます。
+出力の最も大きな変化の要因となる入力領域を強調するために、これらの勾配を使うことができます。
+直感的に、これは最も出力への貢献が顕著な入力領域を強調するはずです。</p>
+<h2 id="_1">使い方</h2>
 <p>There are two APIs exposed to visualize saliency.</p>
 <ol>
 <li><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: This is the general purpose API for visualizing
