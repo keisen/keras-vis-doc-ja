@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>可視化関連 - Keras-vis Documentation</title>
+  <title>可視化 - Keras-vis Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u53ef\u8996\u5316\u95a2\u9023";
+    var mkdocs_page_name = "\u53ef\u8996\u5316";
     var mkdocs_page_input_path = "vis.visualization.md";
     var mkdocs_page_url = "/keras-vis-docs-ja/vis.visualization/";
   </script>
@@ -79,7 +79,7 @@
     <ul class="subnav">
                 <li class=" current">
                     
-    <a class="current" href="./">可視化関連</a>
+    <a class="current" href="./">可視化</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#visualize_activation_with_losses">visualize_activation_with_losses</a></li>
@@ -110,7 +110,7 @@
                 </li>
                 <li class="">
                     
-    <span class="caption-text">最適化関連</span>
+    <span class="caption-text">最適化</span>
     <ul class="subnav">
                 <li class="toctree-l3">
                     
@@ -122,7 +122,7 @@
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="../vis.optimizer/">最適化</a>
+    <a class="" href="../vis.optimizer/">オプティマイザ</a>
                 </li>
                 <li class="toctree-l3">
                     
@@ -191,7 +191,7 @@
         
       
     
-    <li>可視化関連</li>
+    <li>可視化</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/keisen/keras-vis-docs-ja/blob/master/sources/vis.visualization.md"
@@ -233,8 +233,7 @@
 <pre><code class="python">get_num_filters(layer)
 </code></pre>
 
-<p>Determines the number of filters within the given <code>layer</code>.
-与えられたレイヤ内のフィルタ数を調べます。</p>
+<p>与えられたレイヤ内のフィルタ数を調べます。</p>
 <p><em>引数:</em></p>
 <ul>
 <li><strong>layer</strong>:  Kerasレイヤ</li>
@@ -321,36 +320,29 @@
     backprop_modifier=None, grad_modifier=&quot;absolute&quot;)
 </code></pre>
 
-<p>Generates an attention heatmap over the <code>seed_input</code> for maximizing <code>filter_indices</code>
-output in the given <code>layer_idx</code>.</p>
-<p><em>Args:</em></p>
+<p>与えられた<code>layer_idx</code>内の<code>filter_indices</code>の出力を最大化するための<code>seed_input</code>に、注目ヒートマップを生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>model</strong>:  The <code>keras.models.Model</code> instance. The model input shape must be: <code>(samples, channels, image_dims...)</code>
-  if <code>image_data_format=channels_first</code> or <code>(samples, image_dims..., channels)</code> if
-  <code>image_data_format=channels_last</code>.</li>
-<li><strong>layer_idx</strong>:  The layer index within <code>model.layers</code> whose filters needs to be visualized.</li>
-<li><strong>filter_indices</strong>:  filter indices within the layer to be maximized.
-  If None, all filters are visualized. (Default value = None)
-  For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
-  If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
-<li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
-<li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
-  When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
-<li><strong>backprop_modifier</strong>:  backprop modifier to use. See <a href="../vis.backprop_modifiers/">backprop_modifiers</a>. If you don't
-  specify anything, no backprop modification is applied. (Default value = None)</li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. By default <code>absolute</code>
-  value of gradients are used. To visualize positive or negative gradients, use <code>relu</code> and <code>negate</code>
-  respectively. (Default value = 'absolute')</li>
+<li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス。モデル入力の形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>でなければなりません。</li>
+<li><strong>layer_idx</strong>:  可視化されるフィルタを含む<code>model.layers</code>内のレイヤインデックス</li>
+<li><strong>filter_indices</strong>:  最大化されるレイヤ内のフィルタインデックス。
+  Noneが指定された場合、全てのフィルタが可視化されます。(デフォルト値： None)。
+  <code>keras.layers.Dense</code>の場合、<code>filter_idx</code>は出力インデックスとして解釈されます。
+  もし最終層の<code>keras.layers.Dense</code>を可視化するなら、より良い結果を得るために、<a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a>を使って、'softmax'活性化を'linear'に変更することを検討してください。</li>
+<li><strong>seed_input</strong>:  注目マップが可視化されるのに必要なモデルへの入力</li>
+<li><strong>wrt_tensor</strong>:  損失の勾配は、このテンソルに関して計算されます。
+   Noneを指定した場合、これは<code>input_tensor</code>と同じであると想定される。（デフォルト値： None）</li>
+<li><strong>backprop_modifier</strong>:  誤差逆伝播修飾子. <a href="../vis.backprop_modifiers/">backprop_modifiers</a>を参照してください。もし何も指定しない場合、誤差逆伝播修飾は何も適用されません（デフォルト値：None）</li>
+<li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。もし何も指定しない場合、勾配は編集されません(デフォルト値：'absolute')</li>
 </ul>
-<p><em>Example:</em></p>
-<p>If you wanted to visualize attention over 'bird' category, say output index 22 on the
-final <code>keras.layers.Dense</code> layer, then, <code>filter_indices = [22]</code>, <code>layer = dense_layer</code>.</p>
-<p>One could also set filter indices to more than one value. For example, <code>filter_indices = [22, 23]</code> should
-(hopefully) show attention map that corresponds to both 22, 23 output categories.</p>
-<p><em>Returns:</em></p>
-<p>The heatmap image indicating the <code>seed_input</code> regions whose change would most contribute towards
-maximizing the output of <code>filter_indices</code>.</p>
+<p><em>例:</em></p>
+<p>もし'鳥'カテゴリへの注目を可視化したいなら、最終層の<code>keras.layers.Dense</code>の出力インデックスは２２で、
+<code>filter_indices = [22]</code>かつ<code>layer = dense_layer</code>となります。</p>
+<p>また複数の値をフィルタインデックスに設定できます。例えば、 <code>filter_indices = [22, 23]</code>は（上手くいけば）
+２２と２３のカテゴリ両方に関連する注目マップを得られるはずです。</p>
+<p><em>戻り値:</em></p>
+<p><code>filter_indices</code>の出力を最大化に最も貢献する<code>seed_input</code>の領域を示したヒートマップ画像</p>
 <hr />
 <h3 id="visualize_cam_with_losses"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/saliency.py#L130">visualize_cam_with_losses</a></h3>
 <pre><code class="python">visualize_cam_with_losses(input_tensor, losses, seed_input, penultimate_layer, grad_modifier=None)
