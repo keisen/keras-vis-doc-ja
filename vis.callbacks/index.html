@@ -228,22 +228,22 @@
 <pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
 </code></pre>
 
-<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
-<p><em>Args:</em></p>
+<p>この関数は<a href="../vis.optimizer/#minimize">optimizer.minimize</a>の中で呼び出されます。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>i</strong>:  The optimizer iteration.</li>
-<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
-<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
-<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
-<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
+<li><strong>i</strong>:  最適化の反復数</li>
+<li><strong>named_losses</strong>:  <code>(損失名, 損失値)</code>のタプルのリスト</li>
+<li><strong>overall_loss</strong>:  全ての重み付き損失</li>
+<li><strong>grads</strong>:  <code>wrt_value</code>に関する入力画像の勾配</li>
+<li><strong>wrt_value</strong>:  現時点の<code>wrt_value</code></li>
 </ul>
 <hr />
 <h3 id="optimizercallbackon_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L32">OptimizerCallback.on_end</a></h3>
 <pre><code class="python">on_end(self)
 </code></pre>
 
-<p>Called at the end of optimization process. This function is typically used to cleanup / close any
-opened resources at the end of optimization.</p>
+<p>最適化プロセスの最後に呼び出されます。
+この関数は通常、最適化の最後に使用していたリソースのクリーンアップやクローズに使われます。</p>
 <hr />
 <h2 id="print"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L39">Print</a></h2>
 <p>最適化中の値をプリントするためのコールバックです。</p>
@@ -252,22 +252,11 @@ opened resources at the end of optimization.</p>
 <pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
 </code></pre>
 
-<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
-<p><em>Args:</em></p>
-<ul>
-<li><strong>i</strong>:  The optimizer iteration.</li>
-<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
-<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
-<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
-<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
-</ul>
 <hr />
 <h3 id="printon_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L32">Print.on_end</a></h3>
 <pre><code class="python">on_end(self)
 </code></pre>
 
-<p>Called at the end of optimization process. This function is typically used to cleanup / close any
-opened resources at the end of optimization.</p>
 <hr />
 <h2 id="gifgenerator"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L47">GifGenerator</a></h2>
 <p>最適化画像のGIFを構築するためのコールバックです。</p>
@@ -285,22 +274,10 @@ opened resources at the end of optimization.</p>
 <pre><code class="python">callback(self, i, named_losses, overall_loss, grads, wrt_value)
 </code></pre>
 
-<p>This function will be called within <a href="../vis.optimizer/#minimize">optimizer.minimize</a>.</p>
-<p><em>Args:</em></p>
-<ul>
-<li><strong>i</strong>:  The optimizer iteration.</li>
-<li><strong>named_losses</strong>:  List of <code>(loss_name, loss_value)</code> tuples.</li>
-<li><strong>overall_loss</strong>:  Overall weighted loss.</li>
-<li><strong>grads</strong>:  The gradient of input image with respect to <code>wrt_value</code>.</li>
-<li><strong>wrt_value</strong>:  The current <code>wrt_value</code>.</li>
-</ul>
 <hr />
 <h3 id="gifgeneratoron_end"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/callbacks.py#L65">GifGenerator.on_end</a></h3>
 <pre><code class="python">on_end(self)
 </code></pre>
-
-<p>Called at the end of optimization process. This function is typically used to cleanup / close any
-opened resources at the end of optimization.</p>
               
             </div>
           </div>

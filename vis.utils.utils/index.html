@@ -226,197 +226,198 @@
 <ul>
 <li><strong>slicer</strong></li>
 </ul>
-<p>様々な<code>image_data_format</code>の画像のスライスを統一するためのユーティリティ。
-例：
-    conv_layer[utils.slicer[:, filter_idx, :, :]]は<code>channels_first</code>と<code>channels_last</code>の両方で機能しますが、
-    Tensorflowについては、conv_layer[utils.slicer[:, :, :, filter_idx]]でなければならない。</p>
+<p>様々な<code>image_data_format</code>の画像のスライスを統一するためのユーティリティ。</p>
 <hr />
 <h3 id="reverse_enumerate"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L44">reverse_enumerate</a></h3>
 <pre><code class="python">reverse_enumerate(iterable)
 </code></pre>
 
-<p>Enumerate over an iterable in reverse order while retaining proper indexes, without creating any copies.</p>
+<p>コピーを作成することなく、適切なインデックスを保持したまま逆順に並べたイテレータの列挙を返します。</p>
 <hr />
 <h3 id="listify"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L50">listify</a></h3>
 <pre><code class="python">listify(value)
 </code></pre>
 
-<p>Ensures that the value is a list. If it is not a list, it creates a new list with <code>value</code> as an item.</p>
+<p>リストであることを保障します。
+引数がリストでなかった場合、引数を追加したリスト返します。</p>
 <hr />
 <h3 id="add_defaults_to_kwargs"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L58">add_defaults_to_kwargs</a></h3>
 <pre><code class="python">add_defaults_to_kwargs(defaults, **kwargs)
 </code></pre>
 
-<p>Updates <code>kwargs</code> with dict of <code>defaults</code></p>
-<p><em>Args:</em></p>
+<p><code>kwargs</code>を<code>defaults</code>のディクショナリで更新します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>defaults</strong>:  A dictionary of keys and values
-**kwargs: The kwargs to update.</li>
+<li><strong>defaults</strong>:  ディクショナリ</li>
+<li><strong>**kwargs</strong>: 更新対象の<code>kwargs</code></li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The updated kwargs.</p>
+<p><em>戻り値:</em></p>
+<p>更新後のディクショナリ</p>
 <hr />
 <h3 id="get_identifier"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L73">get_identifier</a></h3>
 <pre><code class="python">get_identifier(identifier, module_globals, module_name)
 </code></pre>
 
-<p>Helper utility to retrieve the callable function associated with a string identifier.</p>
-<p><em>Args:</em></p>
+<p>文字列で指定された呼び出し可能な関数を探索するためのヘルパユーティリティです。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>identifier</strong>:  The identifier. Could be a string or function.</li>
-<li><strong>module_globals</strong>:  The global objects of the module.</li>
-<li><strong>module_name</strong>:  The module name</li>
+<li><strong>identifier</strong>:  識別子。文字列か関数が指定できる。</li>
+<li><strong>module_globals</strong>:  モジュールのグローバルオブジェクト</li>
+<li><strong>module_name</strong>:  モジュール名</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The callable associated with the identifier.</p>
+<p><em>戻り値:</em></p>
+<p>指定された呼び出し可能な関数</p>
 <hr />
 <h3 id="apply_modifications"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L95">apply_modifications</a></h3>
 <pre><code class="python">apply_modifications(model, custom_objects=None)
 </code></pre>
 
-<p>Applies modifications to the model layers to create a new Graph. For example, simply changing
-<code>model.layers[idx].activation = new activation</code> does not change the graph. The entire graph needs to be updated
-with modified inbound and outbound tensors because of change in layer building function.</p>
-<p><em>Args:</em></p>
+<p>新しいグラフを作ることでモデルレイヤに変更を適用します。
+例えば、単に<code>model.layers[idx].activation = new activation</code>といった変更をしてもグラフは変化しません。
+レイヤを構築する関数が変更されたため、グラフ全体を変更されたインバウンドとアウトバウンドのテンソルとともに更新する必要があります。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>model</strong>:  The <code>keras.models.Model</code> instance.</li>
+<li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The modified model with changes applied. Does not mutate the original <code>model</code>.</p>
+<p><em>戻り値:</em></p>
+<p>変更を適用済みのモデル。オリジナルの<code>model</code>は変更しません。</p>
 <hr />
 <h3 id="random_array"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L118">random_array</a></h3>
 <pre><code class="python">random_array(shape, mean=128.0, std=20.0)
 </code></pre>
 
-<p>Creates a uniformly distributed random array with the given <code>mean</code> and <code>std</code>.</p>
-<p><em>Args:</em></p>
+<p>与えられた<code>mean</code>と<code>std</code>から一様分布を生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>shape</strong>:  The desired shape</li>
-<li><strong>mean</strong>:  The desired mean (Default value = 128)</li>
-<li><strong>std</strong>:  The desired std (Default value = 20)</li>
+<li><strong>shape</strong>:  形状</li>
+<li><strong>mean</strong>: 　平均 (デフォルト値 = 128)</li>
+<li><strong>std</strong>:  分散 (デフォルト値 = 20)</li>
 </ul>
-<p><em>Returns: Random numpy array of given <code>shape</code> uniformly distributed with desired <code>mean</code> and <code>std</code>.</em></p>
+<p>*戻り値:
+与えられた<code>mean</code>と<code>std</code>から生成した一様分布</p>
 <hr />
 <h3 id="find_layer_idx"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L136">find_layer_idx</a></h3>
 <pre><code class="python">find_layer_idx(model, layer_name)
 </code></pre>
 
-<p>Looks up the layer index corresponding to <code>layer_name</code> from <code>model</code>.</p>
-<p><em>Args:</em></p>
+<p><code>model</code>から<code>layer_name</code>に対応するレイヤのインデックスを調べます。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>model</strong>:  The <code>keras.models.Model</code> instance.</li>
-<li><strong>layer_name</strong>:  The name of the layer to lookup.</li>
+<li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス</li>
+<li><strong>layer_name</strong>:  調べたいレイヤ名</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The layer index if found. Raises an exception otherwise.</p>
+<p><em>戻り値:</em></p>
+<p>見つかったレイヤインデックス。見つからなかった場合は例外(ValueError)が発生する。</p>
 <hr />
 <h3 id="deprocess_input"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L157">deprocess_input</a></h3>
 <pre><code class="python">deprocess_input(input_array, input_range=(0, 255))
 </code></pre>
 
 <p>Utility function to scale the <code>input_array</code> to <code>input_range</code> throwing away high frequency artifacts.</p>
-<p><em>Args:</em></p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_array</strong>:  An N-dim numpy array.</li>
-<li><strong>input_range</strong>:  Specifies the input range as a <code>(min, max)</code> tuple to rescale the <code>input_array</code>.</li>
+<li><strong>input_array</strong>:  N次元のnumpy array</li>
+<li><strong>input_range</strong>:  <code>input_array</code>をリスケールするため、入力の範囲を<code>(min, max)</code>のタプルで指定する</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The rescaled <code>input_array</code>.</p>
+<p><em>戻り値:</em></p>
+<p>リスケールされた<code>input_array</code></p>
 <hr />
 <h3 id="stitch_images"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L181">stitch_images</a></h3>
 <pre><code class="python">stitch_images(images, margin=5, cols=5)
 </code></pre>
 
-<p>Utility function to stitch images together with a <code>margin</code>.</p>
-<p><em>Args:</em></p>
+<p><code>margin</code>をとりながら画像をつなぎ合わせるためのユーティリティ関数です。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>images</strong>:  The array of 2D images to stitch.</li>
-<li><strong>margin</strong>:  The black border margin size between images (Default value = 5)</li>
-<li><strong>cols</strong>:  Max number of image cols. New row is created when number of images exceed the column size.
-  (Default value = 5)</li>
+<li><strong>images</strong>:  つなぎ合わせる２次元画像</li>
+<li><strong>margin</strong>:  画像間の黒いボーダーの幅 (デフォルト値 = 5)</li>
+<li><strong>cols</strong>:  画像の最大列数。画像の数が列数を超えた場合、新たに行を追加します。(デフォルト値 = 5)</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>A single numpy image array comprising of input images.</p>
+<p><em>戻り値:</em></p>
+<p>入力画像をつなぎ合わせた１つのnumpy array</p>
 <hr />
 <h3 id="get_img_shape"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L216">get_img_shape</a></h3>
 <pre><code class="python">get_img_shape(img)
 </code></pre>
 
-<p>Returns image shape in a backend agnostic manner.</p>
-<p><em>Args:</em></p>
+<p>バックエンドに依存せずに、画像の形状を返します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>img</strong>:  An image tensor of shape: <code>(channels, image_dims...)</code> if data_format='channels_first' or
-  <code>(image_dims..., channels)</code> if data_format='channels_last'.</li>
+<li><strong>img</strong>:  画像テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>Tuple containing image shape information in <code>(samples, channels, image_dims...)</code> order.</p>
+<p><em>戻り値:</em></p>
+<p><code>(samples, channels, image_dims...)</code>で画像の形状情報を持つタプル</p>
 <hr />
 <h3 id="load_img"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L238">load_img</a></h3>
 <pre><code class="python">load_img(path, grayscale=False, target_size=None)
 </code></pre>
 
-<p>Utility function to load an image from disk.</p>
-<p><em>Args:</em></p>
+<p>ディスクから画像をロードするユーティリティ関数です。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>path</strong>:  The image file path.</li>
-<li><strong>grayscale</strong>:  True to convert to grayscale image (Default value = False)</li>
-<li><strong>target_size</strong>:  (w, h) to resize. (Default value = None)</li>
+<li><strong>path</strong>:  画像のパス</li>
+<li><strong>grayscale</strong>:  Trueならグレースケースに変換します(デフォルト値 = False)</li>
+<li><strong>target_size</strong>:  (w, h)にリサイズします(デフォルト値 = None)</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The loaded numpy image.</p>
+<p><em>戻り値:</em></p>
+<p>ロードしたnumpy画像</p>
 <hr />
 <h3 id="lookup_imagenet_labels"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L255">lookup_imagenet_labels</a></h3>
 <pre><code class="python">lookup_imagenet_labels(indices)
 </code></pre>
 
-<p>Utility function to return the image net label for the final <code>dense</code> layer output index.</p>
-<p><em>Args:</em></p>
+<p>最終全結合層の出力インデックスから、ImageNetラベルをで返すユーティリティ関数です。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>indices</strong>:  Could be a single value or an array of indices whose labels should be looked up.</li>
+<li><strong>indices</strong>:  探索するラベルのインデックスを１つまたはインデックスの配列で指定できます。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>Image net label corresponding to the image category.</p>
+<p><em>戻り値:</em></p>
+<p>カテゴリに関連するImageNetラベル</p>
 <hr />
 <h3 id="draw_text"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L273">draw_text</a></h3>
 <pre><code class="python">draw_text(img, text, position=(10, 10), font=&quot;FreeSans.ttf&quot;, font_size=14, color=(0, 0, 0))
 </code></pre>
 
-<p>Draws text over the image. Requires PIL.</p>
-<p><em>Args:</em></p>
+<p>画像上にテキストを描画します。Pillowライブラリを必要とします。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>img</strong>:  The image to use.</li>
-<li><strong>text</strong>:  The text string to overlay.</li>
-<li><strong>position</strong>:  The text (x, y) position. (Default value = (10, 10))</li>
-<li><strong>font</strong>:  The ttf or open type font to use. (Default value = 'FreeSans.ttf')</li>
-<li><strong>font_size</strong>:  The text font size. (Default value = 12)</li>
-<li><strong>color</strong>:  The (r, g, b) values for text color. (Default value = (0, 0, 0))</li>
+<li><strong>img</strong>:  画像</li>
+<li><strong>text</strong>:  描画する文字列</li>
+<li><strong>position</strong>:  テキスト位置(x, y)(デフォルト値 = (10, 10))</li>
+<li><strong>font</strong>:  TTFまたはOpenTypeフォント(デフォルト値 = 'FreeSans.ttf')</li>
+<li><strong>font_size</strong>:  フォントサイズ(デフォルト値= 12)</li>
+<li><strong>color</strong>:  テキストの色(r, g, b) (デフォルト値 = (0, 0, 0))</li>
 </ul>
-<p><em>Returns: Image overlayed with text.</em></p>
+<p><em>Returns:</em></p>
+<p>テキストを描画した画像</p>
 <hr />
 <h3 id="bgr2rgb"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L302">bgr2rgb</a></h3>
 <pre><code class="python">bgr2rgb(img)
 </code></pre>
 
-<p>Converts an RGB image to BGR and vice versa</p>
-<p><em>Args:</em></p>
+<p>Converts an RGB image to BGR and vice versa
+RGB画像をBGR画像に（または逆向きに）変換します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>img</strong>:  Numpy array in RGB or BGR format</li>
+<li><strong>img</strong>:  RGBまたはBGRフォーマットのnumpy array</li>
 </ul>
-<p><em>Returns: The converted image format</em></p>
+<p><em>Returns:</em></p>
+<p>変換した画像</p>
 <hr />
 <h3 id="normalize"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/utils/utils.py#L313">normalize</a></h3>
 <pre><code class="python">normalize(array, min_value=0.0, max_value=1.0)
 </code></pre>
 
-<p>Normalizes the numpy array to (min_value, max_value)</p>
-<p><em>Args:</em></p>
+<p>numpy arrayを(min_value, max_value)に正規化します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>array</strong>:  The numpy array</li>
-<li><strong>min_value</strong>:  The min value in normalized array (Default value = 0)</li>
-<li><strong>max_value</strong>:  The max value in normalized array (Default value = 1)</li>
+<li><strong>array</strong>:  numpy array</li>
+<li><strong>min_value</strong>:  正規化した画像の最小値 (デフォルト値 = 0)</li>
+<li><strong>max_value</strong>:  正規化した画像の最大値 (デフォルト値 = 1)</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The array normalized to range between (min_value, max_value)</p>
+<p><em>戻り値:</em></p>
+<p>(min_value, max_value)の範囲に正規化したarray</p>
               
             </div>
           </div>

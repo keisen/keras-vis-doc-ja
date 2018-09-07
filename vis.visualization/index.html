@@ -211,8 +211,6 @@
     input_range=(0, 255), **optimizer_params)
 </code></pre>
 
-<p>Generates the <code>input_tensor</code> that minimizes the weighted <code>losses</code>. This function is intended for advanced
-use cases where a custom loss is desired.</p>
 <p>重み付き<code>losses</code>を最小にする<code>input_tensor</code>を生成します。
 この関数はカスタム損失を必要とする高度なユースケースを対象にしています。</p>
 <p><em>引数:</em></p>
@@ -235,56 +233,53 @@ use cases where a custom loss is desired.</p>
 <pre><code class="python">get_num_filters(layer)
 </code></pre>
 
-<p>Determines the number of filters within the given <code>layer</code>.</p>
-<p><em>Args:</em></p>
+<p>Determines the number of filters within the given <code>layer</code>.
+与えられたレイヤ内のフィルタ数を調べます。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>layer</strong>:  The keras layer to use.</li>
+<li><strong>layer</strong>:  Kerasレイヤ</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>Total number of filters within <code>layer</code>.
-For <code>keras.layers.Dense</code> layer, this is the total number of outputs.</p>
+<p><em>戻り値:</em></p>
+<p>レイヤ内のフィルタ数。<code>keras.layers.Dense</code>レイヤの場合、これは出力数になります。</p>
 <hr />
 <h3 id="overlay"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/__init__.py#L33">overlay</a></h3>
 <pre><code class="python">overlay(array1, array2, alpha=0.5)
 </code></pre>
 
-<p>Overlays <code>array1</code> onto <code>array2</code> with <code>alpha</code> blending.</p>
+<p><code>array1</code>を<code>alpha</code>の透明度で<code>array2</code>の上に重ねます。</p>
 <p><em>Args:</em></p>
 <ul>
-<li><strong>array1</strong>:  The first numpy array.</li>
-<li><strong>array2</strong>:  The second numpy array.</li>
-<li><strong>alpha</strong>:  The alpha value of <code>array1</code> as overlayed onto <code>array2</code>. This value needs to be between [0, 1],
-  with 0 being <code>array2</code> only to 1 being <code>array1</code> only (Default value = 0.5).</li>
+<li><strong>array1</strong>:  numpy array.</li>
+<li><strong>array2</strong>:  numpy array.</li>
+<li><strong>alpha</strong>:  透明度。 この値は[0, 1]の間であること。
+   0を与えると<code>array2</code>のみが、1を与えると<code>array1</code>のみが描画されます(デフォルト値 = 0.5).</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The <code>array1</code>, overlayed with <code>array2</code> using <code>alpha</code> blending.</p>
+<p><em>戻り値:</em></p>
+<p><code>array1</code>を<code>alpha</code>の透明度で<code>array2</code>の上に重ねた画像</p>
 <hr />
 <h3 id="visualize_saliency_with_losses"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/saliency.py#L50">visualize_saliency_with_losses</a></h3>
 <pre><code class="python">visualize_saliency_with_losses(input_tensor, losses, seed_input, wrt_tensor=None, \
     grad_modifier=&quot;absolute&quot;)
 </code></pre>
 
-<p>Generates an attention heatmap over the <code>seed_input</code> by using positive gradients of <code>input_tensor</code>
-with respect to weighted <code>losses</code>.</p>
-<p>This function is intended for advanced use cases where a custom loss is desired. For common use cases,
-refer to <code>visualize_class_saliency</code> or <code>visualize_regression_saliency</code>.</p>
-<p>For a full description of saliency, see the paper:
-[Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps]
-(https://arxiv.org/pdf/1312.6034v2.pdf)</p>
-<p><em>Args:</em></p>
+<p>重み付き損失に関する<code>input_tensor</code>の正の勾配で、<code>seed_input</code>の注目ヒートマップを生成します。</p>
+<p>この関数はカスタム損失を必要とする高度なユースケースを対象にしています。
+汎用的なユースケースは<code>visualize_saliency</code>を参照してください。</p>
+<p>Saliencyの完全な説明は次の論文を参照してください：<a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a></p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
-<li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
-<li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
-  When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. By default <code>absolute</code>
-  value of gradients are used. To visualize positive or negative gradients, use <code>relu</code> and <code>negate</code>
-  respectively. (Default value = 'absolute')</li>
+<li><strong>input_tensor</strong>:  入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>losses</strong>:  (<a href="../vis.losses/#Loss">Loss</a>, weight)のタプルのリスト。</li>
+<li><strong>seed_input</strong>:  注目マップが可視化されるのに必要なモデルへの入力</li>
+<li><strong>wrt_tensor</strong>:  損失の勾配は、このテンソルに関して計算されます。
+   Noneを指定した場合、これは<code>input_tensor</code>と同じであると想定される。（デフォルト値： None）</li>
+<li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。
+   デフォルトでは絶対値（<code>absolute</code>）の勾配が使用されます。
+   正または負の勾配を可視化するには、それぞれ<code>relu</code>および<code>negate</code>を使用して下さい。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The normalized gradients of <code>seed_input</code> with respect to weighted <code>losses</code>.</p>
+<p><em>戻り値:</em></p>
+<p>重み付き損失に関する<code>seed_input</code>の正規化された勾配</p>
 <hr />
 <h3 id="visualize_activation"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/activation_maximization.py#L54">visualize_activation</a></h3>
 <pre><code class="python">visualize_activation(model, layer_idx, filter_indices=None, wrt_tensor=None, seed_input=None, \
@@ -292,40 +287,34 @@ refer to <code>visualize_class_saliency</code> or <code>visualize_regression_sal
     lp_norm_weight=10, tv_weight=10, **optimizer_params)
 </code></pre>
 
-<p>Generates the model input that maximizes the output of all <code>filter_indices</code> in the given <code>layer_idx</code>.</p>
-<p><em>Args:</em></p>
+<p>与えられた<code>layer_idx</code>内の全ての<code>filter_indices</code>の出力を最大化するモデル入力を生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>model</strong>:  The <code>keras.models.Model</code> instance. The model input shape must be: <code>(samples, channels, image_dims...)</code>
-  if <code>image_data_format=channels_first</code> or <code>(samples, image_dims..., channels)</code> if
-  <code>image_data_format=channels_last</code>.</li>
-<li><strong>layer_idx</strong>:  The layer index within <code>model.layers</code> whose filters needs to be visualized.</li>
-<li><strong>filter_indices</strong>:  filter indices within the layer to be maximized.
-  If None, all filters are visualized. (Default value = None)
-  For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
-  If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
-<li><strong>wrt_tensor</strong>:  Short for, with respect to. The gradients of losses are computed with respect to this tensor.
-  When None, this is assumed to be the same as <code>input_tensor</code> (Default value: None)</li>
-<li><strong>seed_input</strong>:  Seeds the optimization with a starting input. Initialized with a random value when set to None.
-  (Default value = None)</li>
-<li><strong>input_range</strong>:  Specifies the input range as a <code>(min, max)</code> tuple. This is used to rescale the
-  final optimized input to the given range. (Default value=(0, 255))</li>
-<li><strong>backprop_modifier</strong>:  backprop modifier to use. See <a href="../vis.backprop_modifiers/">backprop_modifiers</a>. If you don't
-  specify anything, no backprop modification is applied. (Default value = None)</li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. If you don't
-  specify anything, gradients are unchanged (Default value = None)</li>
-<li><strong>act_max_weight</strong>:  The weight param for <code>ActivationMaximization</code> loss. Not used if 0 or None. (Default value = 1)</li>
-<li><strong>lp_norm_weight</strong>:  The weight param for <code>LPNorm</code> regularization loss. Not used if 0 or None. (Default value = 10)</li>
-<li><strong>tv_weight</strong>:  The weight param for <code>TotalVariation</code> regularization loss. Not used if 0 or None. (Default value = 10)</li>
-<li><strong>optimizer_params</strong>:  The **kwargs for optimizer <a href="../vis.optimizer/#optimizerminimize">params</a>. Will default to
-  reasonable values when required keys are not found.</li>
+<li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス。モデル入力の形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>でなければなりません。</li>
+<li><strong>layer_idx</strong>:  可視化されるフィルタを含む<code>model.layers</code>内のレイヤインデックス</li>
+<li><strong>filter_indices</strong>:  最大化されるレイヤ内のフィルタインデックス。
+  Noneが指定された場合、全てのフィルタが可視化されます。(デフォルト値： None)。
+  <code>keras.layers.Dense</code>の場合、<code>filter_idx</code>は出力インデックスとして解釈されます。
+  もし最終層の<code>keras.layers.Dense</code>を可視化するなら、より良い結果を得るために、<a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a>を使って、'softmax'活性化を'linear'に変更することを検討してください。</li>
+<li><strong>wrt_tensor</strong>:  損失の勾配は、このテンソルに関して計算されます。
+  Noneを指定した場合、これは<code>input_tensor</code>と同じであると想定される。（デフォルト値： None）</li>
+<li><strong>seed_input</strong>:  最適化の開始画像にシードします。Noneを指定した場合、ランダム値で初期化されます。（デフォルト値：None）</li>
+<li><strong>input_range</strong>:  入力値の範囲を<code>(min, max)</code>のタプルで指定します。
+  これは最終的に最適化された入力を、指定されたの範囲にスケールするために使用されます（デフォルト値：(0, 255)）。</li>
+<li><strong>backprop_modifier</strong>:  誤差逆伝播修飾子. <a href="../vis.backprop_modifiers/">backprop_modifiers</a>を参照してください。もし何も指定しない場合、誤差逆伝播修飾は何も適用されません（デフォルト値：None）</li>
+<li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。もし何も指定しない場合、勾配は編集されません(デフォルト値：None)</li>
+<li><strong>act_max_weight</strong>:  <code>ActivationMaximization</code>損失の重み係数。ゼロまたはNoneを指定するとこのロスは使われません。(デフォルト値：1)</li>
+<li><strong>lp_norm_weight</strong>:  <code>LPNorm</code>正規化損失の重み係数。ゼロまたはNoneを指定するとこのロスは使われません。(デフォルト値：10)</li>
+<li><strong>tv_weight</strong>:  <code>TotalVariation</code>正規化損失の重み係数。ゼロまたはNoneを指定するとこのロスは使われません。(デフォルト値：10)</li>
+<li><strong>optimizer_params</strong>:  <a href="../vis.optimizer/#optimizerminimize">オプティマイザの**kwargs引数</a>. オプティマイザの必須引数がない場合、適切なデフォルト値が設定されます。</li>
 </ul>
-<p><em>Example:</em></p>
-<p>If you wanted to visualize the input image that would maximize the output index 22, say on
-final <code>keras.layers.Dense</code> layer, then, <code>filter_indices = [22]</code>, <code>layer_idx = dense_layer_idx</code>.</p>
-<p>If <code>filter_indices = [22, 23]</code>, then it should generate an input image that shows features of both classes.</p>
-<p><em>Returns:</em></p>
-<p>The model input that maximizes the output of <code>filter_indices</code> in the given <code>layer_idx</code>.</p>
+<p><em>例:</em></p>
+<p>最終層が<code>keras.layers.Dense</code>で、出力インデックス２２を最大化する入力画像を可視化したいのであれば、
+<code>filter_indices = [22]</code>かつ<code>layer_idx = dense_layer_idx</code>となります。</p>
+<p>もし<code>filter_indices = [22, 23]</code>にすると、両方のクラスの特徴をあらわす入力画像が生成されるはずです。</p>
+<p><em>戻り値:</em></p>
+<p>与えられた<code>layer_idx</code>内の<code>filter_indices</code>の出力を最大化するモデル入力</p>
 <hr />
 <h3 id="visualize_saliency"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/saliency.py#L83">visualize_saliency</a></h3>
 <pre><code class="python">visualize_saliency(model, layer_idx, filter_indices, seed_input, wrt_tensor=None, \

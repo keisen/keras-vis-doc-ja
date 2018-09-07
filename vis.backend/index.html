@@ -134,15 +134,10 @@
     <a class="current" href="./">バックエンド</a>
     <ul class="subnav">
             
-    <li class="toctree-l4"><a href="#global-variables">Global Variables</a></li>
+    <li class="toctree-l4"><a href="#modify_model_backprop">modify_model_backprop</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l5" href="#modify_model_backprop">modify_model_backprop</a></li>
-        
-            <li><a class="toctree-l5" href="#set_random_seed">set_random_seed</a></li>
-        
-        </ul>
+
+    <li class="toctree-l4"><a href="#set_random_seed">set_random_seed</a></li>
     
 
     </ul>
@@ -196,11 +191,6 @@
             <div class="section">
               
                 <p><strong>Source:</strong> <a href="https://github.com/raghakot/keras-vis/tree/master/vis/backend/__init__.py#L0">vis/backend/<strong>init</strong>.py#L0</a></p>
-<h2 id="global-variables"><strong>Global Variables</strong></h2>
-<ul>
-<li><strong>name</strong></li>
-</ul>
-<hr />
 <h3 id="modify_model_backprop"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/backend/tensorflow_backend.py#L52">modify_model_backprop</a></h3>
 <pre><code class="python">modify_model_backprop(model, backprop_modifier)
 </code></pre>
@@ -212,13 +202,13 @@
 <li><strong>backprop_modifier</strong>:  <code>{'guided', 'rectified'}</code>のいずれか１つ</li>
 </ul>
 <p><em>戻り値:</em></p>
-<p>活性化関数を変更したモデルのコピー</p>
+<p>活性化関数の逆伝播時の計算に変更を加えたモデルのコピー</p>
 <hr />
 <h3 id="set_random_seed"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/backend/tensorflow_backend.py#L120">set_random_seed</a></h3>
 <pre><code class="python">set_random_seed(seed_value=1337)
 </code></pre>
 
-<p>再現性を保持するためにランダムシードを設定します。</p>
+<p>再現のためランダムシードを設定します。</p>
 <p><em>引数:</em></p>
 <ul>
 <li><strong>seed_value</strong>:  シード値（デフォルト値=悪名高い1337）</li>

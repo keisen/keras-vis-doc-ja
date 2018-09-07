@@ -212,7 +212,7 @@
 <hr />
 <h2 id="inputmodifier"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/input_modifiers.py#L9">InputModifier</a></h2>
 <p>input modifierを定義するための抽象クラスです。
-<a href="../vis.optimizer/#optimizerminimize">Optimizer.minimize</a>でinput modifierを使用すると最適化処理中、最適化される入力値に対して、更新前後に変更を加えることができます。</p>
+<a href="../vis.optimizer/#optimizerminimize">Optimizer.minimize</a>でinput modifierを使用すると最適化処理中、最適化される入力値に対して、更新前後（<code>pre</code>, <code>post</code>）に変更を加えることができます。</p>
 <pre><code class="python">modifier.pre(seed_input)
 # gradient descent update to img
 modifier.post(seed_input)
@@ -223,29 +223,31 @@ modifier.post(seed_input)
 <pre><code class="python">post(self, inp)
 </code></pre>
 
-<p>Implement post gradient descent update modification to the input. If post-processing is not desired,
-simply ignore the implementation. It returns the unmodified <code>inp</code> by default.</p>
-<p><em>Args:</em></p>
+<p>勾配降下更新後の入力への変更を実装してください。
+もし後処理をしない場合、単にこの実装を無視して下さい（i.e., 実装しない）。
+デフォルトで引数<code>inp</code>をそのまま返します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>inp</strong>:  An N-dim numpy array of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
+<li><strong>inp</strong>:  N次元のnumpy array。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The modified post input.</p>
+<p><em>戻り値:</em></p>
+<p>編集された入力</p>
 <hr />
 <h3 id="inputmodifierpre"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/input_modifiers.py#L21">InputModifier.pre</a></h3>
 <pre><code class="python">pre(self, inp)
 </code></pre>
 
-<p>Implement pre gradient descent update modification to the input. If pre-processing is not desired,
-simply ignore the implementation. It returns the unmodified <code>inp</code> by default.</p>
-<p><em>Args:</em></p>
+<p>勾配降下更新前の入力への変更を実装してください。
+もし後処理をしない場合、単にこの実装を無視して下さい（i.e., 実装しない）。
+デフォルトで引数<code>inp</code>をそのまま返します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>inp</strong>:  An N-dim numpy array of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
+<li><strong>inp</strong>:  N次元のnumpy array。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The modified pre input.</p>
+<p><em>戻り値:</em></p>
+<p>編集された入力</p>
 <hr />
 <h2 id="jitter"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/input_modifiers.py#L48">Jitter</a></h2>
 <hr />
@@ -266,29 +268,10 @@ Jitterは鮮明なActivationMaximization画像を生成することがわかっ�
 <pre><code class="python">post(self, inp)
 </code></pre>
 
-<p>Implement post gradient descent update modification to the input. If post-processing is not desired,
-simply ignore the implementation. It returns the unmodified <code>inp</code> by default.</p>
-<p><em>Args:</em></p>
-<ul>
-<li><strong>inp</strong>:  An N-dim numpy array of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-</ul>
-<p><em>Returns:</em></p>
-<p>The modified post input.</p>
 <hr />
 <h3 id="jitterpre"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/input_modifiers.py#L83">Jitter.pre</a></h3>
 <pre><code class="python">pre(self, img)
 </code></pre>
-
-<p>Implement pre gradient descent update modification to the input. If pre-processing is not desired,
-simply ignore the implementation. It returns the unmodified <code>inp</code> by default.</p>
-<p><em>Args:</em></p>
-<ul>
-<li><strong>inp</strong>:  An N-dim numpy array of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-</ul>
-<p><em>Returns:</em></p>
-<p>The modified pre input.</p>
               
             </div>
           </div>
