@@ -244,8 +244,8 @@ opt_img, grads, _ = optimizer.minimize()
 <h2 id="_2">インストール</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>現在PyPIに登録されているkeras-visは古いバージョンで、多くの不具合を含みます。
-ソースコードまたはGitHub経由でインストールすることをお勧めします。</p>
+<p>現在PyPIに登録されているkeras-visは古いバージョンのため、多くの不具合を含みます。
+ソースコードからインストールすることをお勧めします。</p>
 </div>
 <p>1) theanoまたはtensorflowバックエンドと共に<a href="https://github.com/keras-team/keras/blob/master/README.md#installation">keras</a>をインストールします。
 Kerasのバージョンが2.0以上であることに注意して下さい。</p>
@@ -254,12 +254,6 @@ Kerasのバージョンが2.0以上であることに注意して下さい。</p
 <p>ソースコードからインストール</p>
 </blockquote>
 <pre><code class="bash">sudo python setup.py install
-</code></pre>
-
-<blockquote>
-<p>GitHubからインストール</p>
-</blockquote>
-<pre><code class="bash">sudo pip install git+https://github.com/raghakot/keras-vis.git
 </code></pre>
 
 <blockquote>
@@ -277,7 +271,7 @@ Kerasのバージョンが2.0以上であることに注意して下さい。</p
 それらの論文は私達にブラックボックに耳を傾け、誤分類を診断し、ネットワークが過学習（または未学習）かどうかを評価する方法を提供します。</p>
 <p>Guided backprop can also be used to create <a href="https://deepdreamgenerator.com/gallery">trippy art</a>, neural/texture 
 <a href="https://github.com/jcjohnson/neural-style">style transfer</a> among the list of other growing applications.</p>
-<p>さまざまな視覚化が、それぞれのページで文書化され、ここに要約されています。</p>
+<p>さまざまな視覚化がそれぞれのページで文書化され、ここに要約されています。</p>
 <hr/>
 
 <h3 id="conv-filter-visualization"><a href="visualizations/conv_filters">Conv filter visualization</a></h3>
@@ -336,7 +330,7 @@ opt.minimize(max_iter=500, verbose=True, image_modifiers=[Jitter()], callbacks=[
 <hr/>
 
 <h2 id="_4">引用</h2>
-<p>もしkeras-visがあなたの研究の役にたったなら、あなたの出版物に引用をお願いします。ここにBibTeXエントリの例を示します。</p>
+<p>もしkeras-visがあなたの研究の役立ったなら、資料には引用をお願いします。ここにBibTeXエントリの例を示します。</p>
 <pre><code>@misc{raghakotkerasvis,
   title={keras-vis},
   author={Kotikalapudi, Raghavendra and contributors},
@@ -396,5 +390,5 @@ opt.minimize(max_iter=500, verbose=True, image_modifiers=[Jitter()], callbacks=[
 
 <!--
 MkDocs version : 1.0.3
-Build Date UTC : 2018-09-07 15:28:13
+Build Date UTC : 2018-09-08 06:45:08
 -->

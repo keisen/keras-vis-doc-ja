@@ -233,7 +233,7 @@
 <pre><code class="python">get_num_filters(layer)
 </code></pre>
 
-<p>与えられたレイヤ内のフィルタ数を調べます。</p>
+<p>指定されたレイヤのフィルタ数を調べます。</p>
 <p><em>引数:</em></p>
 <ul>
 <li><strong>layer</strong>:  Kerasレイヤ</li>
@@ -286,7 +286,7 @@
     lp_norm_weight=10, tv_weight=10, **optimizer_params)
 </code></pre>
 
-<p>与えられた<code>layer_idx</code>内の全ての<code>filter_indices</code>の出力を最大化するモデル入力を生成します。</p>
+<p>指定された<code>layer_idx</code>の全ての<code>filter_indices</code>の出力を最大化するモデル入力を生成します。</p>
 <p><em>引数:</em></p>
 <ul>
 <li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス。モデル入力の形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
@@ -311,7 +311,7 @@
 <p><em>例:</em></p>
 <p>最終層が<code>keras.layers.Dense</code>で、出力インデックス２２を最大化する入力画像を可視化したいのであれば、
 <code>filter_indices = [22]</code>かつ<code>layer_idx = dense_layer_idx</code>となります。</p>
-<p>もし<code>filter_indices = [22, 23]</code>にすると、両方のクラスの特徴をあらわす入力画像が生成されるはずです。</p>
+<p><code>filter_indices = [22, 23]</code>にすると、両方のクラスの特徴を示す入力画像が生成されるはずです。</p>
 <p><em>戻り値:</em></p>
 <p>与えられた<code>layer_idx</code>内の<code>filter_indices</code>の出力を最大化するモデル入力</p>
 <hr />
@@ -320,7 +320,7 @@
     backprop_modifier=None, grad_modifier=&quot;absolute&quot;)
 </code></pre>
 
-<p>与えられた<code>layer_idx</code>内の<code>filter_indices</code>の出力を最大化するための<code>seed_input</code>に、注目ヒートマップを生成します。</p>
+<p>指定された<code>layer_idx</code>の<code>filter_indices</code>の出力を最大化するための<code>seed_input</code>に、注目ヒートマップを生成します。</p>
 <p><em>引数:</em></p>
 <ul>
 <li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス。モデル入力の形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
@@ -337,74 +337,61 @@
 <li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。もし何も指定しない場合、勾配は編集されません(デフォルト値：'absolute')</li>
 </ul>
 <p><em>例:</em></p>
-<p>もし'鳥'カテゴリへの注目を可視化したいなら、最終層の<code>keras.layers.Dense</code>の出力インデックスは２２で、
+<p>もし'鳥'カテゴリへの注目を可視化したいなら、最終層の<code>keras.layers.Dense</code>の出力インデックスは２２なので、
 <code>filter_indices = [22]</code>かつ<code>layer = dense_layer</code>となります。</p>
 <p>また複数の値をフィルタインデックスに設定できます。例えば、 <code>filter_indices = [22, 23]</code>は（上手くいけば）
 ２２と２３のカテゴリ両方に関連する注目マップを得られるはずです。</p>
 <p><em>戻り値:</em></p>
-<p><code>filter_indices</code>の出力を最大化に最も貢献する<code>seed_input</code>の領域を示したヒートマップ画像</p>
+<p><code>filter_indices</code>の出力の最大化に最も貢献する<code>seed_input</code>の領域を示したヒートマップ画像</p>
 <hr />
 <h3 id="visualize_cam_with_losses"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/saliency.py#L130">visualize_cam_with_losses</a></h3>
 <pre><code class="python">visualize_cam_with_losses(input_tensor, losses, seed_input, penultimate_layer, grad_modifier=None)
 </code></pre>
 
-<p>Generates a gradient based class activation map (CAM) by using positive gradients of <code>input_tensor</code>
-with respect to weighted <code>losses</code>.</p>
-<p>For details on grad-CAM, see the paper:
-[Grad-CAM: Why did you say that? Visual Explanations from Deep Networks via Gradient-based Localization]
-(https://arxiv.org/pdf/1610.02391v1.pdf).</p>
-<p>Unlike <a href="https://arxiv.org/pdf/1512.04150v1.pdf">class activation mapping</a>, which requires minor changes to
-network architecture in some instances, grad-CAM has a more general applicability.</p>
-<p>Compared to saliency maps, grad-CAM is class discriminative; i.e., the 'cat' explanation exclusively highlights
-cat regions and not the 'dog' region and vice-versa.</p>
-<p><em>Args:</em></p>
+<p>重み付き損失に関する<code>input_tensor</code>の正の勾配を使って、CAMベースの勾配(grad-CAM)を生成します。</p>
+<p>grad-CAMの詳細は論文を参照して下さい： <a href="https://arxiv.org/pdf/1610.02391v1.pdf">Grad-CAM: Why did you say that? Visual Explanations from Deep Networks via Gradient-based Localization</a></p>
+<p>いくつかの例ではわずかながらネットワーク構造に変更が必要となるCAMとは異なり、grad-CAMはより適用範囲が広いです。</p>
+<p>Saliancyと比較すると、grad-CAMはクラスを区別できます；　すなわち<code>猫</code>の説明には猫の領域のみを強調し、犬の領域は強調しません。そしてその逆もまた同様です。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>input_tensor</strong>:  An input tensor of shape: <code>(samples, channels, image_dims...)</code> if <code>image_data_format=
-  channels_first</code> or <code>(samples, image_dims..., channels)</code> if <code>image_data_format=channels_last</code>.</li>
-<li><strong>losses</strong>:  List of (<a href="../vis.losses/#Loss">Loss</a>, weight) tuples.</li>
-<li><strong>seed_input</strong>:  The model input for which activation map needs to be visualized.</li>
-<li><strong>penultimate_layer</strong>:  The pre-layer to <code>layer_idx</code> whose feature maps should be used to compute gradients
-  with respect to filter output.</li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. If you don't
-  specify anything, gradients are unchanged (Default value = None)</li>
+<li><strong>input_tensor</strong>:  入力テンソル。形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>。</li>
+<li><strong>losses</strong>:  (<a href="../vis.losses/#Loss">Loss</a>, weight)のタプルのリスト。</li>
+<li><strong>seed_input</strong>:  注目マップが可視化されるのに必要なモデルへの入力</li>
+<li><strong>penultimate_layer</strong>:  フィルタ出力に関する勾配を計算するために使われるべき特徴マップを得るための<code>layer_idx</code>の１つ前のレイヤ。</li>
+<li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。
+   何も指定しなければ勾配は変更されません（デフォルト値： None）</li>
 </ul>
-<p><em>Returns:</em></p>
-<p>The normalized gradients of <code>seed_input</code> with respect to weighted <code>losses</code>.</p>
+<p><em>戻り値:</em></p>
+<p>重み付き損失に関する<code>seed_input</code>の正規化済み勾配</p>
 <hr />
 <h3 id="visualize_cam"><a href="https://github.com/raghakot/keras-vis/tree/master/vis/visualization/saliency.py#L192">visualize_cam</a></h3>
 <pre><code class="python">visualize_cam(model, layer_idx, filter_indices, seed_input, penultimate_layer_idx=None, \
     backprop_modifier=None, grad_modifier=None)
 </code></pre>
 
-<p>Generates a gradient based class activation map (grad-CAM) that maximizes the outputs of
-<code>filter_indices</code> in <code>layer_idx</code>.</p>
-<p><em>Args:</em></p>
+<p>指定された<code>layer_idx</code>の<code>filter_indices</code>の出力を最大化する、CAMベースの勾配（grad-CAM）を生成します。</p>
+<p><em>引数:</em></p>
 <ul>
-<li><strong>model</strong>:  The <code>keras.models.Model</code> instance. The model input shape must be: <code>(samples, channels, image_dims...)</code>
-  if <code>image_data_format=channels_first</code> or <code>(samples, image_dims..., channels)</code> if
-  <code>image_data_format=channels_last</code>.</li>
-<li><strong>layer_idx</strong>:  The layer index within <code>model.layers</code> whose filters needs to be visualized.</li>
-<li><strong>filter_indices</strong>:  filter indices within the layer to be maximized.
-  If None, all filters are visualized. (Default value = None)
-  For <code>keras.layers.Dense</code> layer, <code>filter_idx</code> is interpreted as the output index.
-  If you are visualizing final <code>keras.layers.Dense</code> layer, consider switching 'softmax' activation for
-  'linear' using <a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a> for better results.</li>
-<li><strong>seed_input</strong>:  The input image for which activation map needs to be visualized.</li>
-<li><strong>penultimate_layer_idx</strong>:  The pre-layer to <code>layer_idx</code> whose feature maps should be used to compute gradients
-  wrt filter output. If not provided, it is set to the nearest penultimate <code>Conv</code> or <code>Pooling</code> layer.</li>
-<li><strong>backprop_modifier</strong>:  backprop modifier to use. See <a href="../vis.backprop_modifiers/">backprop_modifiers</a>. If you don't
-  specify anything, no backprop modification is applied. (Default value = None)</li>
-<li><strong>grad_modifier</strong>:  gradient modifier to use. See <a href="../vis.grad_modifiers/">grad_modifiers</a>. If you don't
-  specify anything, gradients are unchanged (Default value = None)</li>
+<li><strong>model</strong>:  <code>keras.models.Model</code>インスタンス。モデル入力の形状は、<code>channels_first</code>の場合は<code>(samples, channels, image_dims...)</code>、
+  <code>channels_last</code>の場合は<code>(samples, image_dims..., channels)</code>でなければなりません。</li>
+<li><strong>layer_idx</strong>:  可視化されるフィルタを含む<code>model.layers</code>内のレイヤインデックス</li>
+<li><strong>filter_indices</strong>:  最大化されるレイヤ内のフィルタインデックス。
+  Noneが指定された場合、全てのフィルタが可視化されます。(デフォルト値： None)。
+  <code>keras.layers.Dense</code>の場合、<code>filter_idx</code>は出力インデックスとして解釈されます。
+  もし最終層の<code>keras.layers.Dense</code>を可視化するなら、より良い結果を得るために、<a href="../vis.utils.utils/#apply_modifications">utils.apply_modifications</a>を使って、'softmax'活性化を'linear'に変更することを検討してください。</li>
+<li><strong>seed_input</strong>:  注目マップが可視化されるのに必要なモデルへの入力</li>
+<li><strong>penultimate_layer_idx</strong>:  フィルタ出力に関する勾配を計算するために使われるべき特徴マップを得るための<code>layer_idx</code>の１つ前のレイヤ。　何も指定しない場合、<code>layer_idx</code>に最も近い<code>畳み込み</code>または<code>プーリング</code>レイヤが設定されます。</li>
+<li><strong>backprop_modifier</strong>:  誤差逆伝播修飾子. <a href="../vis.backprop_modifiers/">backprop_modifiers</a>を参照してください。もし何も指定しない場合、誤差逆伝播修飾は何も適用されません（デフォルト値：None）</li>
+<li><strong>grad_modifier</strong>:  勾配修飾子。<a href="../vis.grad_modifiers/">grad_modifiers</a>を参照してください。もし何も指定しない場合、勾配は編集されません(デフォルト値：None</li>
 </ul>
-<p><em>Example:</em></p>
-<p>If you wanted to visualize attention over 'bird' category, say output index 22 on the
-final <code>keras.layers.Dense</code> layer, then, <code>filter_indices = [22]</code>, <code>layer = dense_layer</code>.</p>
-<p>One could also set filter indices to more than one value. For example, <code>filter_indices = [22, 23]</code> should
-(hopefully) show attention map that corresponds to both 22, 23 output categories.</p>
-<p><em>Returns:</em></p>
-<p>The heatmap image indicating the input regions whose change would most contribute towards
-maximizing the output of <code>filter_indices</code>.</p>
+<p><em>例:</em></p>
+<p>もし<code>鳥</code>カテゴリへの注目を可視化したいなら、最終層の<code>keras.layers.Dense</code>の出力インデックスは２２なので、
+<code>filter_indices = [22]</code>かつ<code>layer = dense_layer</code>となります。</p>
+<p>また複数の値をフィルタインデックスに設定できます。例えば、 <code>filter_indices = [22, 23]</code>は（上手くいけば）
+２２と２３のカテゴリ両方に関連する注目マップを得られるはずです。</p>
+<p><em>戻り値:</em></p>
+<p><code>filter_indices</code>の出力の最大化に最も貢献する入力の領域を示すヒートマップ画像</p>
               
             </div>
           </div>
