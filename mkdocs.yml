@@ -1,0 +1,38 @@
+site_name: Keras-vis Documentation
+theme: readthedocs
+docs_dir: sources
+repo_url: https://github.com/keisen/keras-vis-docs-ja
+site_url: https://keisen.github.io/keras-vis-docs-ja
+edit_uri: blob/master/sources
+site_description: 'Documentation for keras-vis, Neural Network Visualization Toolkit.'
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+extra_css:
+  - css/extras.css
+
+markdown_extensions:
+  - mdx_math
+  - admonition
+
+nav:
+  - Home: index.md
+  - 可視化について:
+    - Activation Maximization: visualizations/activation_maximization.md
+    - Saliency Maps: visualizations/saliency.md
+    - Class Activation Maps: visualizations/class_activation_maps.md
+  - APIドキュメント:
+    - 可視化: vis.visualization.md
+    - 最適化:
+      - 損失関数: vis.losses.md
+      - 正則化: vis.regularizers.md
+      - オプティマイザ: vis.optimizer.md
+      - コールバック: vis.callbacks.md
+    - 修飾子:
+      - 入力修飾子: vis.input_modifiers.md
+      - 勾配修飾子: vis.grad_modifiers.md
+      - 誤差逆伝播修飾子: vis.backprop_modifiers.md
+    - その他:
+      - ユーティリティ: vis.utils.utils.md
+      - バックエンド: vis.backend.md
