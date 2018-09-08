@@ -74,7 +74,7 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#scenarios">Scenarios</a></li>
+            <li><a class="toctree-l4" href="#_2">シナリオ</a></li>
         
         </ul>
     
@@ -213,23 +213,33 @@ regions that most contribute towards the output.</p>
 直感的に、これは最も出力への貢献が顕著な入力領域を強調するはずです。</p>
 <h2 id="_1">使い方</h2>
 <p>There are two APIs exposed to visualize saliency.</p>
+<p>Saliencyを可視化するための２つのAPIがあります。</p>
 <ol>
 <li><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: This is the general purpose API for visualizing
 saliency.</li>
-<li><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: This is intended for 
-research use-cases where some custom weighted loss can be used.</li>
+<li>
+<p><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: これはSaliencyを可視化するための汎用APIです。</p>
+</li>
+<li>
+<p><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: This is intended for 
+research use-cases where some custom weighted loss can be used.</p>
+</li>
+<li><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: これはいくつかのカスタムな重み付き付き損失を扱うような研究利用向けです。</li>
 </ol>
-<p>See <a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples/</a> for code examples.</p>
-<h3 id="scenarios">Scenarios</h3>
-<p>The API is very general purpose and can be used in a wide variety of scenarios. We will list the most common use-cases
-below:</p>
-<h4 id="categorical-dense-layer-visualization">Categorical Dense layer visualization</h4>
+<p><a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples/</a>にあるコードを参照してください。</p>
+<h3 id="_2">シナリオ</h3>
+<p>APIはとても汎用的な目的で、幅広く様々なシナリオで利用可能です。もっとも一般的なユースケースを下記にリストアップします：</p>
+<h4 id="_3">分類出力をおこなう全結合層の可視化</h4>
 <p>By setting <code>layer_idx</code> to final <code>Dense</code> layer, and <code>filter_indices</code> to the desired output category, we can visualize 
 parts of the <code>seed_input</code> that contribute most towards activating the corresponding output nodes,</p>
+<p><code>layer_idx</code>を最後の<code>全結合</code>層に設定し、<code>filter_indices</code>で出力カテゴリを指定することで、
+出力ノードに対する活性化に最も貢献する<code>seed_input</code>の一部を可視化することができます。</p>
 <ul>
 <li>For multi-class classification, <code>filter_indices</code> can point to a single class.</li>
 <li>For multi-label classifier, simply set the appropriate <code>filter_indices</code>.</li>
 </ul>
+<p>複数クラス分類問題では、filter_indicesは１つのクラスを指すことができます。 
+複数ラベル分類では、適切なfilter_indicesを指定するだけです。</p>
 <h4 id="regression-dense-layer-visualization">Regression Dense layer visualization</h4>
 <p>For regression outputs, we could visualize attention over input that </p>
 <ul>
