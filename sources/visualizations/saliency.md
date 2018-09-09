@@ -60,39 +60,61 @@ parts of the `seed_input` that contribute most towards activating the correspond
 複数クラス分類問題では、filter_indicesは１つのクラスを指すことができます。 
 複数ラベル分類では、適切なfilter_indicesを指定するだけです。
 
-#### Regression Dense layer visualization
+#### 回帰出力をおこなう全結合層の可視化
 
-For regression outputs, we could visualize attention over input that 
+回帰出力では増加する入力、減少、または変化のない入力に対する注目を可視化できます。
 
-- increases
-- decreases
-- maintains
+
+回帰されたfilter_indices出力。例えばリンゴを数えるモデルを学習して、その回帰出力を増加させることは入力画像内のリンゴを増やすことと一致するはずです。同様に回帰出力を減らすこともできます。これはgrad_modifierオプションを使うことで達成できます。名前から連想するように、入力に関する損失の勾配を変更するために使われます。デフォルトでは、ActivationMaximization損失は出力を増加させるために使われます。 grad_modifier='negate'を設定することで勾配の符号反転ができ、これにより出力値を減少させます。 gradient_modifiersはとてもパワフルで、他の可視化APIでもよく使われます。
 
 the regressed `filter_indices` output. For example, consider a self driving model with continuous regression steering 
 output. One could visualize parts of the `seed_input` that contributes towards increase, decrease or maintenance of 
 predicted output.
 
+回帰された`filter_indices`出力。例えば、継続的に操舵出力をおこなう操縦モデルを考えます。
+回帰出力の増加、減少または維持に貢献する`seed_input`の一部を可視化できます。
+
 By default, saliency tells us how to increase the output activations. For the self driving car case, this only tells
 us parts of the input image that contribute towards steering angle increase. Other use cases can be visualized by 
 using `grad_modifier` option. As the name suggests, it is used to modify the gradient of losses with respect to inputs. 
 
+デフォルトでは、Saliencyは出力の活性化をどうやって増加するかを教えてくれます。
+自動運転のケースでは、操舵角度の増加に貢献する入力画像の一部だけを伝えます。
+その他は勾配修飾子オプションを使用して可視化して下さい。
+名前から連想する通り、入力に関する損失の勾配を編集するために使われます。
+
 - To visualize decrease in output, use `grad_modifier='negate'`. By default, `ActivationMaximization` loss yields 
 positive gradients for inputs regions that increase the output. By setting `grad_modifier='negate'` you can treat negative
 gradients (which indicate the decrease) as positive and therefore visualize decrease use case.
+
+- 出力の現象を可視化するためには`grad_modifier='negate'`を使います。
+デフォルトでは、`ActivationMaximization`損失は出力を増加する入力範囲に正の勾配を生じさせます。
+`grad_modifier='negate'`の設定により、（減少を示す）負の勾配を正として扱えるので、減少するケースを可視化できます。
 
 - To visualize what contributed to the predicted output, we want to consider gradients that have very low positive
 or negative values. This can be achieved by performing `grads = abs(1 / grads)` to magnifies small gradients. Equivalently, 
 you can use `grad_modifier='small_values'`, which does the same thing. [gradient_modifiers](../vis.grad_modifiers.md) 
 are very powerful and show up in other visualization APIs as well.
 
-You can see a practical application for this in the 
-[self diving car](https://github.com/raghakot/keras-vis/tree/master/applications/self_driving) example.
+- 出力への貢献を可視化するために、正または負の小さな値の勾配について考えたいです。
+これは小さな勾配を増幅するために`grads = abs(1 / grads)`を実行することで達成できます。
+同じことをするために、`grad_modifier='small_values'`を使用できます。
+[gradient_modifiers](../vis.grad_modifiers.md) はとても強力で、他の可視化APIでもよく使われています。
 
-#### Guided / rectified saliency
+You can see a practical application for this in the 
+
+[self diving car](https://github.com/raghakot/keras-vis/tree/master/applications/self_driving)の例で、実際のアプリケーションを見ることができます。
+
+#### ガイドされた（または矯正された）Saliency
 
 Zieler et al. has the idea of clipping negative gradients in the backprop step. i.e., only propagate positive gradient
 information that communicates the increase in output. We call this rectified or deconv saliency. Details can be found 
 in the paper: [Visualizing and Understanding Convolutional Networks](https://arxiv.org/pdf/1311.2901.pdf).
+
+Zielerらは、誤差逆伝播ステップの負の勾配をクリップするアイデアを持っています。
+すなわち、出力の増加を伝える正の勾配情報だけを伝搬します。
+この矯正されたSaliencyまたはdeconv
+
 
 In guided saliency, the backprop step is modified to only propagate positive gradients for positive activations.
 For details see the paper: [String For Simplicity: The All Convolutional Net](https://arxiv.org/pdf/1412.6806.pdf).
