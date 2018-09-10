@@ -193,93 +193,72 @@
             <div class="section">
               
                 <h2 id="saliency">Saliencyとは</h2>
-<p>Suppose that all the training images of <em>bird</em> class contains a tree with leaves. How do we know whether the CNN is 
-using bird-related pixels, as opposed to some other features such as the tree or leaves in the image? This actually happens more often than you think and you should be especially suspicious if you have a small training set. </p>
-<p><em>鳥クラス</em>の学習用画像の全てに樹が含まれていたと仮定します。CNNが画像内の鳥に関連するピクセルを使っているかどうか、それとは対照的に樹や葉のようなその他の特徴を使っているか、どうやって知ることができますか？これは実際あなたが考える以上によく起こり、小さな学習セットの場合、特に疑わなければなりません。</p>
-<p>Saliency maps was first introduced in the paper: 
-<a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a></p>
-<p>Saliencyマップは論文で最初に導入されました：<a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a></p>
-<p>The idea behind saliency is pretty simple in hindsight. We compute the gradient of output category with respect to 
-input image. </p>
-<p>Saliencyの背景にあるアイデアは、後になって考えればかなりシンプルです。入力画像に関する出力カテゴリの勾配を計算します。</p>
+<p><em>鳥クラス</em>の学習用画像の全てに樹が含まれていたと仮定します。
+CNNが画像内の鳥に関連するピクセルを使っているのか、それとも樹や葉のような鳥以外の特徴を使っているかどうかを、どうやって知ることができますか？
+これは実際、あなたが考えるよりも頻繁に起こり、小さな学習セットの場合は特に疑う必要があります。</p>
+<p>Saliencyマップはこの論文で最初に扱われました：<a href="https://arxiv.org/pdf/1312.6034v2.pdf">Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</a>。</p>
+<p>Saliencyの背景にあるアイデアは今となっては かなりシンプルです。
+入力画像に関する出力カテゴリの勾配を計算します。</p>
 <p>
 <script type="math/tex; mode=display">\frac{\partial output}{\partial input}</script>
 </p>
-<p>This should tell us how the output value changes with respect to a small change in inputs. We can use these gradients 
-to highlight input regions that cause the most change in the output. Intuitively this should highlight salient image 
-regions that most contribute towards the output.</p>
-<p>これは入力への小さな変化に関する出力の変化を教えてくれます。
+<p>これは入力の小さな変化に関して出力値がどのように変化するかを教えてくれます。
 出力の最も大きな変化の要因となる入力領域を強調するために、これらの勾配を使うことができます。
-直感的に、これは最も出力への貢献が顕著な入力領域を強調するはずです。</p>
+これは最も出力への貢献が顕著な(salient)入力領域を直感的に強調するはずです。</p>
 <h2 id="_1">使い方</h2>
-<p>There are two APIs exposed to visualize saliency.</p>
 <p>Saliencyを可視化するための２つのAPIがあります。</p>
 <ol>
-<li><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: This is the general purpose API for visualizing
-saliency.</li>
-<li>
-<p><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: これはSaliencyを可視化するための汎用APIです。</p>
-</li>
-<li>
-<p><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: This is intended for 
-research use-cases where some custom weighted loss can be used.</p>
-</li>
-<li><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: これはいくつかのカスタムな重み付き付き損失を扱うような研究利用向けです。</li>
+<li><a href="../../vis.visualization/#visualize_saliency">visualize_saliency</a>: Saliencyを可視化するための汎用APIです。</li>
+<li><a href="../../vis.visualization/#visualize_saliency_with_losses">visualize_saliency_with_losses</a>: いくつかのカスタムな重み付き付き損失を扱うような研究利用向けです。</li>
 </ol>
 <p><a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples/</a>にあるコードを参照してください。</p>
 <h3 id="_2">シナリオ</h3>
-<p>APIはとても汎用的な目的で、幅広く様々なシナリオで利用可能です。もっとも一般的なユースケースを下記にリストアップします：</p>
+<p>APIはとても一般的な目的で、幅広く様々なシナリオで利用可能です。
+最も一般的なユースケースを下記にリストアップします：</p>
 <h4 id="_3">分類出力をおこなう全結合層の可視化</h4>
-<p>By setting <code>layer_idx</code> to final <code>Dense</code> layer, and <code>filter_indices</code> to the desired output category, we can visualize 
-parts of the <code>seed_input</code> that contribute most towards activating the corresponding output nodes,</p>
-<p><code>layer_idx</code>を最後の<code>全結合</code>層に設定し、<code>filter_indices</code>で出力カテゴリを指定することで、
+<p><code>layer_idx</code>に最後の<code>全結合</code>層を設定し、<code>filter_indices</code>で出力したいカテゴリを指定することで、
 出力ノードに対する活性化に最も貢献する<code>seed_input</code>の一部を可視化することができます。</p>
 <ul>
-<li>For multi-class classification, <code>filter_indices</code> can point to a single class.</li>
-<li>For multi-label classifier, simply set the appropriate <code>filter_indices</code>.</li>
+<li>複数クラス分類では、filter_indicesは１つのクラスを指すことができます。 </li>
+<li>複数ラベル分類では、適切なfilter_indicesを指定するだけです。</li>
 </ul>
-<p>複数クラス分類問題では、filter_indicesは１つのクラスを指すことができます。 
-複数ラベル分類では、適切なfilter_indicesを指定するだけです。</p>
-<h4 id="regression-dense-layer-visualization">Regression Dense layer visualization</h4>
-<p>For regression outputs, we could visualize attention over input that </p>
+<h4 id="_4">回帰出力をおこなう全結合層の可視化</h4>
+<p>回帰出力では、<code>filter_indices</code>の出力を</p>
 <ul>
-<li>increases</li>
-<li>decreases</li>
-<li>maintains</li>
+<li>増加させる入力</li>
+<li>減少させる入力</li>
+<li>維持する入力</li>
 </ul>
-<p>the regressed <code>filter_indices</code> output. For example, consider a self driving model with continuous regression steering 
-output. One could visualize parts of the <code>seed_input</code> that contributes towards increase, decrease or maintenance of 
-predicted output.</p>
-<p>By default, saliency tells us how to increase the output activations. For the self driving car case, this only tells
-us parts of the input image that contribute towards steering angle increase. Other use cases can be visualized by 
-using <code>grad_modifier</code> option. As the name suggests, it is used to modify the gradient of losses with respect to inputs. </p>
+<p>に対する注目を可視化できます。
+例えば、継続的に操舵出力を回帰する自動運転モデルを考えます。
+このモデルは回帰出力の増加、減少または維持に貢献する<code>seed_input</code>の一部を可視化できます。</p>
+<p>デフォルトでは、Saliencyは出力活性化をどうやって増加させるかを教えてくれます。
+自動運転のケースで言えば、操舵角度の増加に貢献する入力画像の一部のみを伝えてくれます。
+その他は勾配修飾子オプションを使用して可視化できます。
+その名前から連想する通り、入力に関する損失の勾配を編集するために使われます。</p>
 <ul>
-<li>
-<p>To visualize decrease in output, use <code>grad_modifier='negate'</code>. By default, <code>ActivationMaximization</code> loss yields 
-positive gradients for inputs regions that increase the output. By setting <code>grad_modifier='negate'</code> you can treat negative
-gradients (which indicate the decrease) as positive and therefore visualize decrease use case.</p>
-</li>
-<li>
-<p>To visualize what contributed to the predicted output, we want to consider gradients that have very low positive
-or negative values. This can be achieved by performing <code>grads = abs(1 / grads)</code> to magnifies small gradients. Equivalently, 
-you can use <code>grad_modifier='small_values'</code>, which does the same thing. <a href="../../vis.grad_modifiers/">gradient_modifiers</a> 
-are very powerful and show up in other visualization APIs as well.</p>
-</li>
+<li>出力の減少を可視化するには、<code>grad_modifier='negate'</code>を使います。
+デフォルトでは、<code>ActivationMaximization</code>損失は出力を増加させる入力領域に正の勾配を生じさせます。
+<code>grad_modifier='negate'</code>の設定により、（減少を示す）負の勾配を正として扱えるので、減少するケースを可視化できます。</li>
+<li>出力に何が貢献したかを可視化するために、正または負のとても小さな値の勾配について考察の必要があります。
+これは小さな勾配を増幅するための<code>grads = abs(1 / grads)</code>を実行すれば実現できます。
+同等のことは<code>grad_modifier='small_values'</code>で実現できます。
+<a href="../../vis.grad_modifiers/">gradient_modifiers</a> はとても強力で、他の可視化APIでもよく使われます。</li>
 </ul>
-<p>You can see a practical application for this in the 
-<a href="https://github.com/raghakot/keras-vis/tree/master/applications/self_driving">self diving car</a> example.</p>
-<h4 id="guided-rectified-saliency">Guided / rectified saliency</h4>
-<p>Zieler et al. has the idea of clipping negative gradients in the backprop step. i.e., only propagate positive gradient
-information that communicates the increase in output. We call this rectified or deconv saliency. Details can be found 
-in the paper: <a href="https://arxiv.org/pdf/1311.2901.pdf">Visualizing and Understanding Convolutional Networks</a>.</p>
-<p>In guided saliency, the backprop step is modified to only propagate positive gradients for positive activations.
-For details see the paper: <a href="https://arxiv.org/pdf/1412.6806.pdf">String For Simplicity: The All Convolutional Net</a>.</p>
-<p>For both these cases, we can use <code>backprop_modifier='relu'</code> and <code>backprop_modifier='guided'</code> respectively. You 
-can also implement your own <a href="../../vis.backprop_modifiers/">backprop_modifier</a> to try your crazy research idea :)</p>
-<h4 id="conv-filter-saliency">Conv filter saliency</h4>
-<p>By pointing <code>layer_idx</code> to <code>Conv</code> layer, you can visualize parts of the image that influence the filter. This might 
-help you discover what a filter cares about. Here, <code>filter_indices</code> refers to the index of the <code>Conv</code> filter within 
-the layer.</p>
+<p><a href="https://github.com/raghakot/keras-vis/tree/master/applications/self_driving">self diving car</a>の例で、実際のアプリケーションを見ることができます。</p>
+<h4 id="saliency_1">ガイド付き（または矯正付き）Saliency</h4>
+<p>Zielerらは、誤差逆伝播ステップの負で勾配をクリップすることを考えました。
+すなわち、出力の増加を伝える正の勾配情報だけを伝搬します。
+これを矯正されたSaliencyまたは逆畳み込みのSaliencyと呼びます。
+詳細は論文で見ることができます：<a href="https://arxiv.org/pdf/1311.2901.pdf">Visualizing and Understanding Convolutional Networks</a>。</p>
+<p>ガイド付きSaliencyでは、誤差逆伝播ステップは正の活性化を得る正の勾配だけを伝播するよう変更されます。
+詳しくは論文を参照してください：<a href="https://arxiv.org/pdf/1412.6806.pdf">String For Simplicity: The All Convolutional Net</a></p>
+<p>いずれのケースも、それぞれ<code>backprop_modifier='relu'</code>や<code>backprop_modifier='guided'</code>で実現できます。
+クレイジーな研究に挑戦するため、自分だけの<a href="../../vis.backprop_modifiers/">backprop_modifier</a>を実装することもできます。</p>
+<h4 id="saliency_2">畳み込みフィルタのSaliency</h4>
+<p><code>layer_idx</code>で<code>畳み込み</code>層を指して、フィルタに影響を与える画像の一部を可視化できます。
+これはフィルタが影響を受けるものについて、気付きを得る助けになります。
+ここでは、<code>filter_indices</code>はレイヤ内の<code>畳み込み</code>フィルタのインデックスを参照しています。</p>
               
             </div>
           </div>

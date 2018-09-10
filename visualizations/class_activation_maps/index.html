@@ -196,20 +196,25 @@
             <div class="section">
               
                 <h2 id="class-activation-map">Class Activation Mapとは</h2>
-<p>Class activation mapsまたはgrad-CAMは、入力の注目領域を可視化するもう１つの方法です。モデルの出力（<a href="../saliency/">saliency</a>を参照）に関する勾配を使う代わりに、grad-CAMは後ろから２番目（<code>全結合</code>層の前）の<code>畳み込み</code>層の出力を使います。
+<p>Class activation mapsまたはgrad-CAMは、入力の注目領域を可視化するもう１つの方法です。
+モデルの出力（<a href="../saliency/">saliency</a>を参照）に関する勾配を使う代わりに、grad-CAMは後ろから２番目（<code>全結合</code>層の前）の<code>畳み込み</code>層の出力を使います。
 直感的には、<code>全結合</code>層で完全に失われる空間情報を利用するために、最も出力に近い<code>畳み込み</code>層を使うことです。</p>
 <p>keras-visでは、<a href="http://cnnlocalization.csail.mit.edu/">Class Activation maps</a>よりも汎用的で熟考された<a href="https://arxiv.org/pdf/1610.02391.pdf">grad-CAM</a>を使います。</p>
 <h2 id="_1">使い方</h2>
 <p>grad-CAMで可視化するための２つのAPIがあり、それらは<a href="../saliency/#Usage">saliencyの使い方</a>とほとんど同じです。</p>
 <ol>
-<li><a href="../../vis.visualization/#visualize_cam">visualize_cam</a>: これはgrad-CAMで可視化するための汎用APIです。</li>
-<li><a href="../../vis.visualization/#visualize_cam_with_losses">visualize_cam_with_losses</a>: これはいくつかのカスタムな重み付き付き損失を扱うような研究利用向けです。</li>
+<li><a href="../../vis.visualization/#visualize_cam">visualize_cam</a>: grad-CAMで可視化するための汎用APIです。</li>
+<li><a href="../../vis.visualization/#visualize_cam_with_losses">visualize_cam_with_losses</a>: いくつかのカスタムな重み付き付き損失を扱うような研究利用向けです。</li>
 </ol>
-<p>注目するべき追加は<code>penultimate_layer_idx</code>パラメータだけです。これにより特定のpre-layerの出力の勾配が使われるようにできます。デフォルトでは、keras-visは最も近いレイヤをフィルタで探します。</p>
+<p>注目するべき追加は<code>penultimate_layer_idx</code>パラメータだけです。
+これにより特定のpre-layerの出力の勾配が使われるようにできます。
+デフォルトでは、keras-visは最も近いレイヤをフィルタで探します。</p>
 <h3 id="_2">シナリオ</h3>
 <p><a href="../saliency/#scenarios">saliencyのシナリオ</a>を参照して下さい。すべては、追加された<code>penultimate_layer_idx</code>パラメータに期待して下さい。</p>
 <h2 id="_3">了解</h2>
-<p>grad-CAMは後ろから２番目のレイヤと可視化されるレイヤが近いときのみ、上手く機能します。これは<code>畳み込み</code>フィルタの可視化にも言えます。あなたのモデルがこのケースに該当しない場合はsaliencyを使うほうが良いです。</p>
+<p>grad-CAMは可視化されるレイヤが後ろから２番目のレイヤに近い場合のみ、上手く機能します。
+これは<code>畳み込み</code>フィルタの可視化にも言えます。
+あなたのモデルがこのケースに該当しない場合はsaliencyを使うほうが良いでしょう。</p>
               
             </div>
           </div>

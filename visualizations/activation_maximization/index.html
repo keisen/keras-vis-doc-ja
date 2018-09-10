@@ -198,56 +198,76 @@
             <div class="section">
               
                 <h2 id="activation-maximization">Activation Maximizationとは</h2>
-<p>CNNでは、それぞれの畳み込み層に入力画像内によく似たテンプレートパターンを見つけると、その出力を最大化するいくつかの学習済み<em>テンプレートマッチング</em>フィルタがあります。最初の畳み込み層は簡単に解釈で、単に重みを画像として可視化するだけです。畳み込み層がしていることを見るためには、入力ピクセルにフィルタを適用するのが簡単な方法です。後続の畳み込みフィルタが前の畳み込みフィルタの出力を操作する（いくつかのテンプレートの存在有無を示す）ため、それらの解釈が難しくなります。</p>
-<p>Activation Maximizationの背景にあるアイデアは、シンプルにフィルタ出力の活性化を最大にする入力画像を生成することです。
+<p>CNNのそれぞれの畳み込み層は、入力画像内によく似たパターンを見つけると出力を最大化するいくつかの学習済み<em>テンプレートマッチング</em>フィルタを所有しています。
+最初の畳み込み層は簡単に解釈で、単に重みを画像として可視化するだけです。
+畳み込み層がしていることを見るためには、入力ピクセルにフィルタを適用するのがシンプルな方法です。
+後続の畳み込みフィルタが前の畳み込みフィルタの出力を処理する（いくつかのパターンの存在有無を示す）ため、それらの解釈が難しくなります。</p>
+<p>ActivationMaximizationの背景にあるアイデアは今となってはシンプルで、フィルタの出力活性化を最大にする入力画像を生成することです。
 つまり下記を計算すること。</p>
 <p>
 <script type="math/tex; mode=display">\frac{\partial ActivationMaximizationLoss}{\partial input}</script>
 </p>
-<p>そして、その推定値を使って入力を更新することです。<a href="../../vis.losses/#activationmaximization">ActivationMaximization</a>損失関数は
-フィルタの活性化を大きくするために、その出力を小さくします（勾配降下の反復中に損失を最小化します）。
+<p>そして、その推定値を使って入力を更新することです。
+<a href="../../vis.losses/#activationmaximization">ActivationMaximization</a>損失関数はフィルタの活性化を大きくするために、その出力を小さくします（勾配降下の反復中に損失を最小化します）。
 これにより特定の入力パターンに対して活性化するフィルタを理解することができます。
-例えば、入力画像内の眼の存在によって活性化するEyeフィルタがあるかもしれません。</p>
+例えば、入力画像内にある'眼'によって活性化するEyeフィルタがあるかもしれません。</p>
 <h2 id="_1">使い方</h2>
 <p>ActivationMaximizationを実行するための２つのAPIがあります。</p>
 <ol>
-<li><a href="../../vis.visualization/#visualize_activation">visualize_activation</a>:これは活性化を可視化するための汎用APIです。</li>
-<li><a href="../../vis.visualization/#visualize_activation_with_losses">visualize_activation_with_losses</a>:これはいくつかのカスタムな重み付き損失の最小化を扱うような研究利用向けです。</li>
+<li><a href="../../vis.visualization/#visualize_activation">visualize_activation</a>:活性化を可視化するための汎用APIです。</li>
+<li><a href="../../vis.visualization/#visualize_activation_with_losses">visualize_activation_with_losses</a>:いくつかのカスタムな重み付き損失の最小化を扱うような研究利用向けです。</li>
 </ol>
 <p><a href="https://github.com/raghakot/keras-vis/tree/master/examples">examples/</a>にあるコードを参照してください。</p>
 <h3 id="_2">シナリオ</h3>
-<p>APIはとても汎用的な目的で、幅広く様々なシナリオで利用可能です。もっとも一般的なユースケースを下記にリストアップします：</p>
+<p>APIはとても一般的な目的で、幅広く様々なシナリオで利用可能です。
+もっとも一般的なユースケースを下記にリストアップします：</p>
 <h4 id="_3">分類出力をおこなう全結合層の可視化</h4>
-<p>ネットワークが過学習（または未学習）しているか、一般化が適切かをどのように評価できますか？
+<p>ネットワークが過学習（または未学習）なのか、適切に一般化できているのかをどのように評価できますか？
 入力画像を与えると、CNNはそれが猫なのか鳥なのかなどを分類できます。
-それが鳥であることが何を意味するか、その正しい概念をとらえているかどうか確認できますか？</p>
+鳥であることの意味を正しい概念で捕らえているかどうか確認できますか？</p>
 <p>それらの問いに対する１つの解は、逆の問いかけをすることです：</p>
 <blockquote>
-<p>鳥クラスに対応する最終の全結合層を最大化する入力画像を生成する。</p>
+<p>鳥クラスに対応する最終層の出力を最大化する入力画像を生成する。</p>
 </blockquote>
-<p>これは最終の全結合層を<code>layer_idx</code>で指し、<code>filter_indices</code>に望む出力分類を設定することで実現できます。</p>
+<p>これは最終層を<code>layer_idx</code>で指し、<code>filter_indices</code>に望む出力分類を設定することで実現できます。</p>
 <ul>
 <li>複数クラス分類問題では、<code>filter_indices</code>は１つのクラスを指すことができます。
-あなたは"猫 魚"がどのように見えるかを確認するために複数の分類を指すこともできます。</li>
+"猫 魚"がどのように見えるかを確認するために複数の分類を指すことも可能です。</li>
 <li>複数ラベル分類では、適切な<code>filter_indices</code>を指定するだけです。</li>
 </ul>
 <h4 id="_4">回帰出力をおこなう全結合層の可視化</h4>
-<p>クラス活性化の可視化とは異なり、回帰出力では増加する入力、または減少する入力の可視化ができます。</p>
-<p>回帰された<code>filter_indices</code>出力。例えばリンゴを数えるモデルを学習して、その回帰出力を増加させることは入力画像内のリンゴを増やすことと一致するはずです。同様に回帰出力を減らすこともできます。これは<code>grad_modifier</code>オプションを使うことで達成できます。名前から連想するように、入力に関する損失の勾配を変更するために使われます。デフォルトでは、<code>ActivationMaximization</code>損失は出力を増加させるために使われます。
-<code>grad_modifier='negate'</code>を設定することで勾配の符号反転ができ、これにより出力値を減少させます。
-<a href="../../vis.grad_modifiers/">gradient_modifiers</a>はとてもパワフルで、他の可視化APIでもよく使われます。</p>
+<p>クラス活性化の可視化とは異なり、回帰出力では、<code>filter_indices</code>の出力を</p>
+<ul>
+<li>増加させる入力</li>
+<li>減少させる入力</li>
+</ul>
+<p>の可視化ができます。
+例えばリンゴを数えるモデルを学習して、その回帰出力を増加させることは入力画像内のリンゴを増やすことと一致するはずです。
+同様に回帰出力を減らすこともできます。
+これは<code>grad_modifier</code>オプションを使うことで実現できます。
+名前から連想するように、入力に関する損失の勾配を変更するために使われます。
+デフォルトでは、<code>ActivationMaximization</code>損失は出力を増加させるために使われます。
+<code>grad_modifier='negate'</code>を設定することで勾配の符号反転ができ、これにより出力値を減少させることができます。
+<a href="../../vis.grad_modifiers/">gradient_modifiers</a>はとても強力で、他の可視化APIでもよく使われます。</p>
 <h4 id="_5">畳み込みフィルタの可視化</h4>
-<p><code>layer_idx</code>が<code>畳み込み</code>層を指すことで、フィルタを活性化するパターンを可視化できます。これはフィルタがどう計算されているかを理解するのに役立ちます。ここでは、<code>filter_indices</code>はレイヤ内の<code>畳み込み</code>フィルタのインデックスを参照します。</p>
+<p><code>layer_idx</code>が<code>畳み込み</code>層を指すことで、フィルタを活性化するパターンを可視化できます。
+これはフィルタがどう計算されているかを理解するのに役立ちます。
+ここでは<code>filter_indices</code>はレイヤ内の<code>畳み込み</code>フィルタのインデックスを参照します。</p>
 <h3 id="_6">高度な使い方</h3>
-<p><a href="../../vis.backprop_modifiers/">backprop_modifiers</a>を使えば誤差逆伝播の振る舞いを編集することができます。たとえば、
-<code>backprop_modifier='relu'</code>を使うことで陽の勾配だけを伝播させるよう微調整できます。このパラメータも関数を受け付け、あなたのクレイジーな研究アイデアを実装するために使うことができます。 :-)</p>
+<p><a href="../../vis.backprop_modifiers/">backprop_modifiers</a>を使えば、誤差逆伝播の振る舞いを変更することができます。
+例えば、<code>backprop_modifier='relu'</code>を使うことで正の勾配だけを伝播させるよう微調整できます。
+このパラメータを関数に渡して、クレイジーな研究アイデアの実装に使って下さい。 :-)</p>
 <h2 id="tips">Tipsとトリック</h2>
 <ul>
-<li>どうしようもない可視化を得てしまったら、勾配降下反復中の様々なロスを確認するために<code>verbose=True</code>を設定してみて下さい。デフォルトでは、<code>visualize_activation</code>はより自然な画像を得るために<code>TotalVariation</code>と<code>LpNorm</code>の正則化を使います。<code>ActivationMaximization Loss</code>が正則化損失の重み係数に支配され、値が前後に跳ねる様子を見ることができるでしょう。全ての重み係数をゼロに設定して、徐々にTV損失の重み係数を増やしてみてください。</li>
+<li>どうしようもない可視化を得てしまったら、勾配降下反復中の様々なロスを確認するために<code>verbose=True</code>を設定してみて下さい。
+デフォルトでは、<code>visualize_activation</code>はより自然な画像を得るために<code>TotalVariation</code>と<code>LpNorm</code>の正則化を使います。
+<code>ActivationMaximization Loss</code>が正則化損失の重み係数に支配され、値が前後に跳ねる様子を見ることができるでしょう。
+全ての重み係数をゼロに設定して、徐々にTV損失の重み係数を増やしてみてください。</li>
 <li>よりシャープな画像を得るために、<a href="../../vis.input_modifiers/#jitter">Jitter</a>入力修飾子を使って下さい。</li>
-<li>回帰モデルは通常、意味ある入力画像を生成するために十分な勾配情報を提供しません。もし意味をなさい場合は、<code>seed_input</code>を使って初期値を与えてみてください。</li>
+<li>回帰モデルは通常、意味ある入力画像を生成するために十分な勾配情報を提供しません。
+もし入力画像が意味をなさい場合は、<code>seed_input</code>を使って初期値を与えてみてください。</li>
+<li>あなたが発見した有用なTipsやトリックを、PullRequestでkeras-visに追加することを検討してください。</li>
 </ul>
-<p>あなたが発見した有用なTipsやトリックを追加するために、PullRequestを投げることを検討してください。</p>
               
             </div>
           </div>
