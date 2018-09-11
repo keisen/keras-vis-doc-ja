@@ -1,9 +1,9 @@
 site_name: Keras-vis Documentation
 theme: readthedocs
 docs_dir: sources
-repo_url: https://github.com/keisen/keras-vis-docs-ja
-site_url: https://keisen.github.io/keras-vis-docs-ja
-edit_uri: blob/master/sources
+repo_url: https://github.com/raghakot/keras-vis
+site_url: https://github.com/raghakot/keras-vis
+edit_uri: https://github.com/keisen/keras-vis-docs-ja/blob/master/sources
 site_description: 'Documentation for keras-vis, Neural Network Visualization Toolkit.'
 
 extra_javascript:
